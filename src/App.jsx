@@ -1,8 +1,32 @@
+import EARLLegend from "./components/EARLLegend";
+import EARLNavbar from "./components/EARLNavbar";
+
 function App() {
+    const mainColors = [
+        "bg-gradient-to-tr",
+        "from-slate-900",
+        "to-slate-600",
+        "text-white",
+    ];
+
+    const mainSize = [
+        "min-h-screen",
+        "text-sm",
+        "sm:text-base",
+    ];
+
+    const mainLoc = [
+        "flex",
+        "flex-col",
+    ];
+
+    const mainClassName = [...mainColors, ...mainSize, ...mainLoc].join(" ");
+
     return (
-        <h1 className="text-3xl font-bold underline">
-            Hello world!
-        </h1>
+        <main className={mainClassName}>
+            <EARLNavbar />
+            <EARLLegend />
+        </main>
     )
 }
 
