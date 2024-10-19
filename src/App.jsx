@@ -1,33 +1,32 @@
-import EARLLegend from "./components/EARLLegend";
-import EARLNavbar from "./components/EARLNavbar";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+} from "react-router-dom";
+
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Documentation from "./pages/Documentation";
+import Examples from "./pages/Examples";
+import Home from "./pages/Home";
+import InvalidPage from "./pages/InvalidPage";
 
 function App() {
-    const mainColors = [
-        "bg-gradient-to-tr",
-        "from-slate-900",
-        "to-slate-600",
-        "text-white",
-    ];
-
-    const mainSize = [
-        "min-h-screen",
-        "text-sm",
-        "sm:text-base",
-    ];
-
-    const mainLoc = [
-        "flex",
-        "flex-col",
-    ];
-
-    const mainClassName = [...mainColors, ...mainSize, ...mainLoc].join(" ");
-
     return (
-        <main className={mainClassName}>
-            <EARLNavbar />
-            <EARLLegend />
-        </main>
-    )
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route index element={<Home />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/documentation" element={<Documentation />} />
+                    <Route path="/examples" element={<Examples />} />
+                    <Route path="*" element={<InvalidPage />} />
+                </Routes>
+            </BrowserRouter>
+        </>
+    );
 }
 
 export default App

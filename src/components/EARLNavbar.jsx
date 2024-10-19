@@ -7,7 +7,7 @@ function EARLNavbar() {
                 <ul className="flex space-x-6">
                     <li>
                         <a
-                            href="#home"
+                            href="/home"
                             className="text-sm md:text-base font-light hover:text-gray-300 transition-colors"
                         >
                             Home
@@ -15,7 +15,7 @@ function EARLNavbar() {
                     </li>
                     <li>
                         <a
-                            href="#about"
+                            href="/about"
                             className="text-sm md:text-base font-light hover:text-gray-300 transition-colors"
                         >
                             About
@@ -23,7 +23,7 @@ function EARLNavbar() {
                     </li>
                     <li>
                         <a
-                            href="#documentation"
+                            href="/documentation"
                             className="text-sm md:text-base font-light hover:text-gray-300 transition-colors"
                         >
                             Documentation
@@ -31,7 +31,7 @@ function EARLNavbar() {
                     </li>
                     <li>
                         <a
-                            href="#examples"
+                            href="/examples"
                             className="text-sm md:text-base font-light hover:text-gray-300 transition-colors"
                         >
                             Examples
@@ -39,7 +39,7 @@ function EARLNavbar() {
                     </li>
                     <li>
                         <a
-                            href="#contact"
+                            href="/contact"
                             className="text-sm md:text-base font-light hover:text-gray-300 transition-colors"
                         >
                             Contact
