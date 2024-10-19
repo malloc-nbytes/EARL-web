@@ -2,6 +2,7 @@ import EARLSideBar from "../components/EARLSideBar";
 import EARLNavbar from "../components/EARLNavbar";
 import EARLInfo from "../components/EARLInfo";
 import EARLCodeSnippet from "../components/EARLCodeSnippet";
+import EARLTable from "../components/EARLTable";
 
 const compilingEARLBash = `cd EARL
 mkdir build
@@ -14,6 +15,93 @@ make
 sudo make install
 make test
 `;
+
+const keywordsData = [
+    { keyword: "let", section: "Variable Declarations" },
+    { keyword: "fn", section: "Function Definitions" },
+    { keyword: "if", section: "Conditionals" },
+    { keyword: "else", section: "Conditionals" },
+    { keyword: "while", section: "While Loops" },
+    { keyword: "for", section: "For Loops" },
+    { keyword: "foreach", section: "Foreach Loops" },
+    { keyword: "loop", section: "Forever Loops" },
+    { keyword: "in", section: "For loops, Foreach Loops" },
+    { keyword: "to", section: "For loops" },
+    { keyword: "break", section: "For loops, While Loops, Foreach Loops, Forever Loops" },
+    { keyword: "continue", section: "For loops, While Loops, Foreach Loops, Forever Loops" },
+    { keyword: "import", section: "Imports" },
+    { keyword: "almost", section: "Imports" },
+    { keyword: "full", section: "Imports" },
+    { keyword: "module", section: "Modules" },
+    { keyword: "class", section: "Classes" },
+    { keyword: "match", section: "Pattern Matching" },
+    { keyword: "when", section: "Pattern Matching" },
+    { keyword: "enum", section: "Enumerations" },
+    { keyword: "@ref", section: "Attributes" },
+    { keyword: "@pub", section: "Attributes" },
+    { keyword: "@world", section: "Attributes" },
+    { keyword: "@const", section: "Attributes" },
+    { keyword: "@experimental", section: "Attributes" },
+    { keyword: "return", section: "N/A" },
+    { keyword: "true", section: "N/A" },
+    { keyword: "false", section: "N/A" },
+    { keyword: "none", section: "N/A" },
+];
+
+const keywordsColumns = ["Keyword", "Section"];
+
+const binaryOperationsData = [
+    { symbol: "+", datatypes: "int, float, list, str", description: "Adds the elements together" },
+    { symbol: "-", datatypes: "int, float", description: "Subtracts the elements" },
+    { symbol: "*", datatypes: "int, float", description: "Multiplies the elements together" },
+    { symbol: "/", datatypes: "int, float", description: "Divides the elements" },
+    { symbol: "%", datatypes: "int", description: "Produces the modulo" },
+    { symbol: "**", datatypes: "int, float", description: "Produces the power" },
+    { symbol: ">", datatypes: "int, float, time", description: "Greater than" },
+    { symbol: "<", datatypes: "int, float, time", description: "Less than" },
+    { symbol: ">=", datatypes: "int, float, time", description: "Greater than or equal to" },
+    { symbol: "<=", datatypes: "int, float, time", description: "Less than or equal to" },
+    { symbol: "==", datatypes: "bool, int, str, float, char, list, option, tuple, TypeKW, unit time", description: "Equal to"},
+    { symbol: "!=", datatypes: "bool, int, str, float, char, list, option, tuple, TypeKW, unit time", description: "Not equal to"},
+    { symbol: "&&", datatypes: "bool, option", description: "Logical AND"},
+    { symbol: "||", datatypes: "bool, option", description: "Logical OR"},
+    { symbol: "<<", datatypes: "int", description: "Bit shift left"},
+    { symbol: ">>", datatypes: "int", description: "Bit shift right"},
+    { symbol: "`&", datatypes: "int", description: "Bitwise AND (backtick needed)"},
+    { symbol: "`|", datatypes: "int", description: "Bitwise OR (backtick needed)"},
+    { symbol: "`~", datatypes: "int", description: "Bitwise NOT (backtick needed)"},
+    { symbol: "`^", datatypes: "int", description: "Bitwise XOR (backtick needed)"},
+];
+
+const binaryOperationsColumns = ["Symbol", "Datatypes", "Description"];
+
+const Section = ({ id, title, children, code }) => {
+    return (
+        <div className="py-4" id={id}>
+            <h2 className="text-4xl font-bold p-4">{title}</h2>
+            {children}
+            {code && <EARLCodeSnippet code={code} language="bash" />}
+        </div>
+    );
+};
+
+const ContentWrapper = ({ sections }) => {
+    return (
+        <div className="flex">
+            {/* Sidebar */}
+            <EARLSideBar sections={sections} />
+
+            {/* Main Content */}
+            <div className="ml-64 p-8 flex-1">
+                {sections.map((section, index) => (
+                    <Section key={index} id={`section${index}`} title={section.title} code={section.code}>
+                        {section.content}
+                    </Section>
+                ))}
+            </div>
+        </div>
+    );
+};
 
 function Documentation() {
     const mainColors = [
@@ -270,35 +358,7 @@ x = "not allowed"; # error because x is an integer.`} language="armasm" />
                     <div className="py-4" id="section11">
                         <h2 className="text-4xl font-bold p-4">Keywords</h2>
                         <div className='p-4'>
-                            <EARLInfo text='let -> Variable Declarations' />
-                            <EARLInfo text='fn -> Function Definitions' />
-                            <EARLInfo text='if -> Conditionals' />
-                            <EARLInfo text='else -> Conditionals' />
-                            <EARLInfo text='while -> While Loops' />
-                            <EARLInfo text='for -> For Loops' />
-                            <EARLInfo text='foreach -> Foreach Loops' />
-                            <EARLInfo text='loop -> Forever Loops' />
-                            <EARLInfo text='in -> For loops, Foreach Loops' />
-                            <EARLInfo text='to -> For loops' />
-                            <EARLInfo text='break -> For loops, While Loops, Foreach Loops, Forever Loops' />
-                            <EARLInfo text='continue -> For loops, While Loops, Foreach Loops, Forever Loops' />
-                            <EARLInfo text='import -> Imports' />
-                            <EARLInfo text='almost -> Imports' />
-                            <EARLInfo text='full -> Imports' />
-                            <EARLInfo text='module -> Modules' />
-                            <EARLInfo text='class -> Classes' />
-                            <EARLInfo text='match -> Pattern Matching' />
-                            <EARLInfo text='when -> Pattern Matching' />
-                            <EARLInfo text='enum -> Enumerations' />
-                            <EARLInfo text='@ref -> Attributes' />
-                            <EARLInfo text='@pub -> Attributes' />
-                            <EARLInfo text='@world -> Attributes' />
-                            <EARLInfo text='@const -> Attributes' />
-                            <EARLInfo text='@experimental -> Attributes' />
-                            <EARLInfo text='return' />
-                            <EARLInfo text='true' />
-                            <EARLInfo text='false' />
-                            <EARLInfo text='none' />
+                            <EARLTable columns={keywordsColumns} data={keywordsData} />
                         </div>
                     </div>
 
@@ -316,8 +376,178 @@ x = "not allowed"; # error because x is an integer.`} language="armasm" />
                         <EARLInfo text='In the table below, the datatypes section describes which datatypes are able to use the binary operations.' />
                         <EARLInfo text='This does not mean that if an entry has (`int`, `list`), that you can add an integer to a list.' />
                         <EARLInfo text='Rather, it is describing that the operator works for (`int` <op> `int`) or (`list` <op> `list`). ' />
+
+                        <div className='p-4'>
+                            <EARLTable columns={binaryOperationsColumns} data={binaryOperationsData} />
+                        </div>
                     </div>
 
+                    <div className="py-4" id="section14">
+                        <h2 className="text-4xl font-bold p-4">Variable Declarations</h2>
+                        <div className="p-4" id="section15">
+                            <h4 className="text-3xl font-bold p-4">Grammar</h4>
+                            <div className='p-4'>
+                                <EARLInfo text='`let` <id> ?(: <type>) = expr;' />
+                                <EARLInfo text='or' />
+                                <EARLInfo text='`let` <id0> ?(: <type>), <id1> ?(: <type>), <id2> ?(: <type>), …, <idN> ?(: <type>) = tuple;' />
+                                <div className='p-4'><EARLInfo text='where |tuple| = number of IDs' /></div>
+                            </div>
+
+                            <h2 className="text-3xl font-bold p-4">Examples</h2>
+                            <div className="p-4" id="section16">
+                                <EARLCodeSnippet code={`let k = 1;
+let x: int = func(k);
+let y = [1, 2, 3];
+let z: list = (0..10).rev().filter(|x| { return x % 2 == 0; });
+
+let x, y, z = ('a', none, false);
+let a: int, b: int, c: real = (1, 2, 3);
+let s = (1, 2);
+let k, j = s;`} language='armasm' />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="py-4" id="section17">
+                        <h2 className="text-4xl font-bold p-4">Mutation</h2>
+                        <EARLInfo text={"Mutation describes changing a variable's value in memory."} />
+                        <div className="p-4" id="section18">
+                            <h4 className="text-3xl font-bold p-4">Grammar</h4>
+                            <div className='p-4'>
+                                <EARLInfo text={'expr = expr;'} />
+                            </div>
+                        </div>
+                        <div className="p-4" id="section19">
+                            <h4 className="text-3xl font-bold p-4">Examples</h4>
+                            <div className='p-4'>
+                                <EARLCodeSnippet code={`k = 1;
+k = 3+9;
+k = (3+3)*2;
+lst[3] = 9+23;
+lst[3].nth(1) = 9+23;`} language={'armasm'} />
+                            </div>
+                        </div>
+                        <div className="p-4" id="section20">
+                            <h4 className="text-3xl font-bold p-4">Shorthand</h4>
+                            <div className='p-4'>
+                                <EARLInfo text={'For convenience, there are some shorthand operations that can be performed.'} />
+                                <EARLCodeSnippet code={`k += N # substitutes -> k = k + (N);
+k -= N # substitutes -> k = k - (N);
+k *= N # substitutes -> k = k * (N);
+k /= N # substitutes -> k = k / (N);
+k %= N # substitutes -> k = k % (N);
+k \`|= N # substitutes -> k = k \`| (N);
+k \`&= N # substitutes -> k = k \`& (N);
+k \`^= N # substitutes -> k = k \`^ (N);`} language={'none'} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="py-4" id="section21">
+                        <h2 className="text-4xl font-bold p-4">Conditionals</h2>
+                        <EARLInfo text={'Conditionals are `if`, `if-else`, and `if-else-if` statements. If the expression is true, that branch will occur.'} />
+                        <div className="p-4" id="section22">
+                            <h4 className="text-3xl font-bold p-4">Grammar</h4>
+                            <div className='p-4'>
+                                <EARLInfo text={'`if` expr { [stmt] }'} />
+                                <EARLInfo text={'`else if` expr { [stmt] }'} />
+                                <EARLInfo text={'`else` { [stmt] }'} />
+                            </div>
+                        </div>
+                        <div className="p-4" id="section23">
+                            <h4 className="text-3xl font-bold p-4">Examles</h4>
+                            <div className='p-4'>
+                                <EARLCodeSnippet code={`if k == 2 {
+    # code
+}
+else if (k+1 == 9) {
+    # code
+}
+else {
+    # code
+}`} language={'armasm'} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="py-4" id="section24">
+                        <h2 className="text-4xl font-bold p-4">Pattern Matching</h2>
+                        <div className="mb-4"><EARLInfo text={'*Note*: Pattern matching is still a work in progress and may be buggy.'} /></div>
+                        <div className="mb-4"><EARLInfo text={'*Note*: Pattern matching on lists is not yet fully implemented.'} /></div>
+                        <div className="mb-4"><EARLInfo text={'Pattern matching allows you to match on some pattern. This is the case for all primitives `int`, `str`, `list` etc.'} /></div>
+                        <EARLInfo text={'A `match` consists of two things:'} />
+                        <div className="p-4">
+                            <EARLInfo text={'1. The pattern -> this comes right after the `match` keyword'} />
+                            <EARLInfo text={'2. Branches -> these are all the different patterns that can happen'} />
+                        </div>
+                        <EARLInfo text={'Each branch can either specify one pattern or multiple patterns with the `|` (or) operator. The `when`'} />
+                        <EARLInfo text={'keyword acts as a guard for the branch. If the pattern matches, only then is the guard evaluated. If'} />
+                        <EARLInfo text={'the guard is true, only then will the branch activate.'} />
+                        <div className="p-4" id="section25">
+                            <h4 className="text-3xl font-bold p-4">Grammar</h4>
+                            <div className='p-4'>
+                                <EARLInfo text={'TODO'} />
+                            </div>
+                        </div>
+                        <div className="p-4" id="section26">
+                            <h4 className="text-3xl font-bold p-4">Examples</h4>
+                            <div className='p-4'>
+                                <EARLCodeSnippet code={`let x = 4;
+let msg = "foo";
+
+match x {
+    1 -> { println("x is 1"); }
+    2 | 3 -> { println("x is two or three"); }
+    [1,2,3] when type(x) == "list" -> { println(x is a list and is [1,2,3]"); }
+    4 when msg = "bar" -> { println("x is 4 with msg = bar"); }
+    4 when msg = "foo" -> { println("x is 4 with msg = foo"); }
+    _ when msg = "hello" -> { println("base case, 4 is something else and msg = hello"); }
+    _ -> { println("base case, 4 is something else"); }
+}`} language={'armasm'} />
+                                <div className="p-4">
+                                    <EARLInfo text={'output: '}/ >
+                                    <EARLCodeSnippet code={`x is 4 with msg = foo`} language={"bash"}/>
+                                </div>
+                                <EARLCodeSnippet code={`let x = some(4);
+
+match x {
+    none -> {
+        print("x is none");
+    }
+    some(3) -> {
+        print("x is some 3");
+    }
+    some(k) when k % 2 == 1 -> {
+        print("x is something and is odd");
+    }
+    some(k) -> {
+        # This branch will execute.
+        # \`k\` is the unwrapped value of \`x\`.
+        print("x is: ", k);
+        print(x.unwrap() == k);
+    }
+    some(_) -> {
+        print("x is something");
+    }
+    _ -> {
+        print("x is something else");
+    }
+}`} language={'armasm'} />
+                                <div className="p-4">
+                                    <EARLInfo text={'output: '}/ >
+                                    <EARLCodeSnippet code={`x is: 4
+true`} language={'bash'} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="py-4" id="section25">
+                            <h2 className="text-4xl font-bold p-4">Bash Commands</h2>
+                            <EARLInfo text={'You can use BASH commands directly in EARL source code, and there are three different ways to do this:'} />
+                            <div className="p-4">
+                                <EARLInfo text={'1. by just having the embedded bash'} />
+                                <EARLInfo text={'2. by piping the output into a new variable'} />
+                                <EARLInfo text={'3. by piping the output into an existing variable/location.'} />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
