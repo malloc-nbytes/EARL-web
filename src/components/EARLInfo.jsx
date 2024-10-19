@@ -47,12 +47,15 @@ function EARLInfo({ text }) {
         // Escape HTML special characters
         const escapedText = escapeHTML(text);
 
-        // First, replace the inline code surrounded by backticks (`...`)
+        // Replace escaped characters for bold and inline code markers (/* and /`)
+        const escapedBoldText = escapedText.replace(/\/\*/g, '%%BOLD%%');
+        const escapedCodeText = escapedBoldText.replace(/\/`/g, '%%CODE%%');
+
+        // Now process bold (*) and inline code (`) markers
         const codeRegex = /`(.*?)`/g;
         const boldRegex = /\*(.*?)\*/g;
 
-        // Replace all instances of inline code and bold text
-        let parsedText = escapedText;
+        let parsedText = escapedCodeText;
 
         // First pass: Replace inline code
         parsedText = parsedText.replace(codeRegex, (match, p1) => {
@@ -64,6 +67,10 @@ function EARLInfo({ text }) {
             return `<strong class="font-bold">${p1}</strong>`;
         });
 
+        // Finally, restore the escaped markers
+        parsedText = parsedText.replace(/%%BOLD%%/g, '<span class="escaped-bold">/*</span>');
+        parsedText = parsedText.replace(/%%CODE%%/g, '<span class="escaped-code">/`</span>');
+
         // Return the parsed HTML
         return parsedText;
     };
@@ -71,7 +78,7 @@ function EARLInfo({ text }) {
     return (
         <p
             ref={elementRef}
-            className={`text-sm md:text-base font-light bg-slate-900 transition-opacity duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+            className={`text-sm md:text-base font-light bg-slate-800 transition-opacity duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}
             dangerouslySetInnerHTML={{ __html: parseTextWithCodeAndBold(text) }}
         />
     );
