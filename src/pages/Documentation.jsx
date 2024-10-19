@@ -16,6 +16,8 @@ import { conditionalsExample1 } from "../code-snippets/Conditionals";
 import { patternMatchingExample1Src, patternMatchingExample1Output, patternMatchingExample2Src, patternMatchingExample2Output } from "../code-snippets/PatternMatching";
 import { bashCommandsExample1Src } from "../code-snippets/BashCommands";
 import { whileLoopsExample1Src } from "../code-snippets/WhileLoops";
+import { forLoopsExample1Src } from "../code-snippets/ForLoops";
+import { foreachLoopsExample1Src } from "../code-snippets/ForeachLoops";
 
 const compilingEARLBash = `cd EARL
 mkdir build
@@ -513,10 +515,60 @@ const EARL_language_reference = [
                 <EARLInfoIndent>
                     <EARLInfoSpace><Latex>{`\\text{Let } i \\text{ be the enumerator} \\\\ \\text{and } e \\text{ be the end where } i \\ge e.`}</Latex></EARLInfoSpace>
                     <EARLInfoSpace><EARLInfo text='The loop will stop when' /></EARLInfoSpace>
-                    <Latex>{`i < e`}</Latex>
+                    <EARLInfoSpace><Latex>{`i < e.`}</Latex></EARLInfoSpace>
+                    <EARLInfo text='This makes it so that if enumerating from `10 to 0`, it will stop at −1. This is not the case if we are enumerating upwards.' />
                 </EARLInfoIndent>
             </>
         ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`for` <id> in expr to expr { [stmt] }' />
+                    </>
+                ),
+            },
+            {
+                title: "Examles",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={forLoopsExample1Src} language={'armasm'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Foreach Loops",
+        content: (
+            <>
+                <EARLInfo text='Foreach loops take a list, string, tuple, or a dictionary and will iterate over the elements. The most' />
+                <EARLInfo text='common way to use these loops is with a `range` (see *Ranges*). Also, the iterator (usually the variable' />
+                <EARLInfo text='labeled as `i`), can be set as a reference (see Attributes) to the expression. This means that `i` will take' />
+                <EARLInfoSpace><EARLInfo text='the reference of each iterated value in the list and can modify it directly (see ref example below).' /></EARLInfoSpace>
+                <EARLInfo text='You can also destructure the value being enumerated over by providing more ids. This is also true for' />
+                <EARLInfo text='dictionaries (see dictionary example below).' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`foreach` /*(`@`[`ref`|`const`]) <id> /*(`,` <id>) `in` expr { [stmt] }' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={foreachLoopsExample1Src} language={'armasm'} />
+                    </>
+                ),
+            },
+        ],
     },
 ];
 
@@ -679,7 +731,14 @@ function EARLSideBar({ sections }) {
 }
 
 const Section = ({ id, title, content, subsections, extraContent, depth = 0 }) => {
-    const titleClass = `text-${Math.max(4 - depth, 1)}xl font-bold p-4`;
+    const titleClass = depth === 0
+        ? "text-4xl font-bold p-4" // Main sections (depth 0)
+        : depth === 1
+        ? "text-3xl font-bold p-4" // First level subsections
+        : depth === 2
+        ? "text-2xl font-bold p-4" // Second level subsections
+        : "text-xl font-bold p-4"; // Further nested sections
+
     console.log("title: ", title, " titleclass: ", titleClass);
 
     return (
