@@ -1,3 +1,6 @@
+// import katex from "katex";
+// import "katex/dist/katex.min.css";
+import Latex from "../components/Latex";
 import EARLNavbar from "../components/EARLNavbar";
 import EARLInfo from "../components/EARLInfo";
 import EARLInfoIndent from "../components/EARLInfoIndent";
@@ -7,6 +10,12 @@ import EARLTable from "../components/EARLTable";
 import { yourFirstProgramSrc, yourFirstProgramOutput } from "../code-snippets/DocumentationYourFirstProgram";
 import { typingExampleSrc } from "../code-snippets/TypingExample";
 import { replProgrammingExample1, replProgrammingExample2, replProgrammingExample3, replProgrammingExample4 } from "../code-snippets/ReplProgramming";
+import { variableDeclarationsExample1 } from "../code-snippets/VariableDeclarations";
+import { mutationExample1 } from "../code-snippets/Mutation";
+import { conditionalsExample1 } from "../code-snippets/Conditionals";
+import { patternMatchingExample1Src, patternMatchingExample1Output, patternMatchingExample2Src, patternMatchingExample2Output } from "../code-snippets/PatternMatching";
+import { bashCommandsExample1Src } from "../code-snippets/BashCommands";
+import { whileLoopsExample1Src } from "../code-snippets/WhileLoops";
 
 const compilingEARLBash = `cd EARL
 mkdir build
@@ -245,6 +254,270 @@ const EARL_language_reference = [
             },
         ],
     },
+    {
+        title: "Keywords",
+        content: (
+            <>
+                <EARLInfo text='EARL has quite a few reserved keywords, and these must not be used as identifier names.' />
+                <EARLInfoIndent>
+                <EARLTable columns={keywordsColumns} data={keywordsData} />
+                </EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "Builtin Identifiers",
+        content: (
+            <>
+                <EARLInfo text='These are identifiers that are built into the interpreter. The ones that exist at the moment are:' />
+                <EARLInfoIndent>
+                    <EARLInfo text='`__FILE__` -> Get the current filename as a `str`' />
+                    <EARLInfo text='`__FUNC__` -> Get the current function name as a `str`' />
+                </EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "Binary Operations",
+        content: (
+            <>
+                <EARLInfo text='In the table below, the datatypes section describes which datatypes are able to use the binary' />
+                <EARLInfo text='operations. This does not mean that if an entry has (`int`, `list`), that you can add an integer to a' />
+                <EARLInfo text='list. Rather, it is describing that the operator works for (`int <op> int`) or (`list <op> list`). ' />
+                <EARLInfoIndent>
+                    <EARLTable columns={binaryOperationsColumns} data={binaryOperationsData} />
+                </EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "Variable Declarations",
+        content: (
+            <>
+                <EARLInfo text='Variable declarations are how you create new variables.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`let` <id> ?(: <type>) = expr; ' />
+                        <EARLInfo text='or' />
+                        <EARLInfo text='`let` <id0> ?(: <type>), <id1> ?(: <type>), <id2> ?(: <type>), …, <idN> ?(: <type>) = tuple ' />
+                        <EARLInfoIndent>
+                            <EARLInfo text='where' />
+                            <EARLInfo text='|tuple| = number of IDs.' />
+                        </EARLInfoIndent>
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={variableDeclarationsExample1} language={'armasm'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Mutation",
+        content: (
+            <>
+                <EARLInfo text='Mutation describes changing a variables value in memory.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='expr = expr;' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={mutationExample1} language={'armasm'} />
+                    </>
+                ),
+            },
+            {
+                title: "Shorthand",
+                content: (
+                    <>
+                        <EARLInfo text='For convenience, there are some shorthand operations that can be performed.' />
+                        <EARLInfoIndent>
+                            <EARLInfo text='k += N # substitutes -> k = k + (N);' />
+                            <EARLInfo text='k -= N # substitutes -> k = k - (N);' />
+                            <EARLInfo text='k *= N # substitutes -> k = k * (N);' />
+                            <EARLInfo text='k /= N # substitutes -> k = k / (N);' />
+                            <EARLInfo text='k %= N # substitutes -> k = k % (N);' />
+                            <EARLInfo text='k `|= N # substitutes -> k = k `| (N);' />
+                            <EARLInfo text='k `&= N # substitutes -> k = k `& (N);' />
+                            <EARLInfo text='k `^= N # substitutes -> k = k `^ (N);' />
+                        </EARLInfoIndent>
+                        <EARLInfo text='TODO: Fix shorthand' />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Conditionals",
+        content: (
+            <>
+                <EARLInfo text='Conditionals are `if`, `if-else`, and `if-else-if` statements. If the expression is true, that branch will occur.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`if` expr { [stmt] } ' />
+                        <EARLInfo text='`else if` expr { [stmt] } ' />
+                        <EARLInfo text='`else` { [stmt] } ' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <EARLCodeSnippet code={conditionalsExample1} language={"armasm"} />
+                ),
+            },
+        ],
+    },
+    {
+        title: "Pattern Matching",
+        content: (
+            <>
+                <EARLInfoSpace><EARLInfo text='*Note*: Pattern matching is still a work in progress and may be buggy.' /></EARLInfoSpace>
+                <EARLInfoSpace><EARLInfo text='*Note*: Pattern matching on lists is not yet fully implemented.' /></EARLInfoSpace>
+                <EARLInfoSpace><EARLInfo text='Pattern matching allows you to match on some pattern. This is the case for all primitives `int`, `str`, `option` etc.' /></EARLInfoSpace>
+                <EARLInfo text='A `match` consists of a two things:' />
+                <EARLInfoIndent>
+                    <EARLInfo text='1. the pattern -> this comes right after the match keyword,' />
+                    <EARLInfo text='2. branches -> these are all the different patterns can be.' />
+                </EARLInfoIndent>
+                <EARLInfo text='Each branch can either specify one pattern or multiple patterns with the `|` (or) operator. The `when`' />
+                <EARLInfo text='keyword acts as a guard for the branch. If the pattern matches, only then is the guard evaluated. If' />
+                <EARLInfoSpace><EARLInfo text='the guard is true, only then will the branch activate.' /></EARLInfoSpace>
+                <EARLInfo text='And finally, the base case consists of the pattern `_`. If none of the other branches above this one' />
+                <EARLInfo text='happens, this one is guaranteed to happen (unless there is a guard).'/>
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <EARLInfo text='TODO' />
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLInfo text='TODO: fix syntax highlighting' />
+                        <EARLCodeSnippet code={patternMatchingExample1Src} language={'armasm'} />
+                        <EARLInfo text={'Output:'} />
+                        <EARLInfoIndent><EARLInfo text={patternMatchingExample1Output} /></EARLInfoIndent>
+                        <EARLCodeSnippet code={patternMatchingExample2Src} language={'armasm'} />
+                        <EARLInfo text={'Output:'} />
+                        <EARLInfoIndent><EARLInfo text={patternMatchingExample2Output} /></EARLInfoIndent>
+                        <EARLInfo text={'*Note*: For more information on `some` and `none`, see `option` in *Datatypes*. For `unwrap()`, see `unwrap` in *Member Intrinsics*.'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Bash Literals",
+        content: (
+            <>
+                <EARLInfo text='This is one of the more important parts of this document. This is how you can' />
+                <EARLInfo text='use `BASH` commands directly in EARL source code. There are three different ways to do this:' />
+                <EARLInfoIndent>
+                    <EARLInfo text='1. by just having the embedded `BASH`,' />
+                    <EARLInfo text='2. by piping the output into a new variable,' />
+                    <EARLInfo text='3. by piping the output into an existing variable/location.' />
+                </EARLInfoIndent>
+                <EARLInfo text='*Note*: For convenience, if a bash command returns a string of size 1 that is a space, newline, tab etc,' />
+                <EARLInfo text='EARL will cut those out. This can be disabled using the `--no-sanitize-pipes` flag. ' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`$`expr`;`' />
+                        <EARLInfo text='or' />
+                        <EARLInfo text='*(<attr>) `$`<expr> `|>` <id>`;`' />
+                        <EARLInfo text='or' />
+                        <EARLInfo text='`$`<expr> `|>` <expr>`;`' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={bashCommandsExample1Src} language={'armasm'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "While Loops",
+        content: (
+            <>
+                <EARLInfo text='`while` loops will continue to loop while the expression is `true`' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`while` expr { [stmt] }' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={whileLoopsExample1Src} language={'armasm'} />
+                        <EARLInfo text='Output:' />
+                        <EARLInfoIndent><EARLInfo text='012' /></EARLInfoIndent>
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "For Loops",
+        content: (
+            <>
+                <EARLInfo text='For loops will enumerate over a range of numbers, with the enumerator being assigned the current' />
+                <EARLInfo text='number. If the enumerator is less than the initial destination value, it will be incremented. If it is less' />
+                <EARLInfoSpace><EARLInfo text='than the initial destination value, it will decrement.' /></EARLInfoSpace>
+                <EARLInfo text='*Note*: There is a special extra step that is taken if enumerating down.' />
+                <EARLInfoIndent>
+                    <EARLInfoSpace><Latex>{`\\text{Let } i \\text{ be the enumerator} \\\\ \\text{and } e \\text{ be the end where } i \\ge e.`}</Latex></EARLInfoSpace>
+                    <EARLInfoSpace><EARLInfo text='The loop will stop when' /></EARLInfoSpace>
+                    <Latex>{`i < e`}</Latex>
+                </EARLInfoIndent>
+            </>
+        ),
+    },
 ];
 
 const sections = [
@@ -357,24 +630,23 @@ const sections = [
     },
 ];
 
-const Subsection = ({ title, content, subsections, depth = 0 }) => {
-    // Define font sizes for different depths
-    const titleClass = `text-${Math.max(2 - depth, 1)}xl font-semibold p-2`;
+// const Subsection = ({ title, content, subsections, depth = 0 }) => {
+//     const titleClass = `text-${Math.max(2 - depth, 1)}xl font-semibold p-2`;
 
-    return (
-        <div className="ml-8 py-2">
-            <h3 className={titleClass}>{title}</h3>
-            <div>{content}</div>
-            {subsections && subsections.length > 0 && (
-                <div className="pl-4">
-                    {subsections.map((subsection, index) => (
-                        <Subsection key={index} {...subsection} depth={depth + 1} />
-                    ))}
-                </div>
-            )}
-        </div>
-    );
-};
+//     return (
+//         <div className="ml-8 py-2">
+//             <h3 className={titleClass}>{title}</h3>
+//             <div>{content}</div>
+//             {subsections && subsections.length > 0 && (
+//                 <div className="pl-4">
+//                     {subsections.map((subsection, index) => (
+//                         <Subsection key={index} {...subsection} depth={depth + 1} />
+//                     ))}
+//                 </div>
+//             )}
+//         </div>
+//     );
+// };
 
 function EARLSideBar({ sections }) {
     return (
@@ -407,7 +679,8 @@ function EARLSideBar({ sections }) {
 }
 
 const Section = ({ id, title, content, subsections, extraContent, depth = 0 }) => {
-    const titleClass = `text-${Math.max(4 - depth, 1)}xl font-bold p-4`; // Adjust the size of section title
+    const titleClass = `text-${Math.max(4 - depth, 1)}xl font-bold p-4`;
+    console.log("title: ", title, " titleclass: ", titleClass);
 
     return (
         <div className="py-4" id={id}>
