@@ -17,5 +17,4 @@ function EARLSideBar({sections}) {
     );
 }
 
-
 export default EARLSideBar;
