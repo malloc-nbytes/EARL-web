@@ -1,5 +1,3 @@
-// import katex from "katex";
-// import "katex/dist/katex.min.css";
 import Latex from "../components/Latex";
 import EARLNavbar from "../components/EARLNavbar";
 import EARLInfo from "../components/EARLInfo";
@@ -18,6 +16,14 @@ import { bashCommandsExample1Src } from "../code-snippets/BashCommands";
 import { whileLoopsExample1Src } from "../code-snippets/WhileLoops";
 import { forLoopsExample1Src } from "../code-snippets/ForLoops";
 import { foreachLoopsExample1Src } from "../code-snippets/ForeachLoops";
+import { foreverLoopsExample1Src } from "../code-snippets/ForeverLoops";
+import { functionDefinitionsExample1Src } from "../code-snippets/FunctionDefinitions";
+import { importsExample1Src } from "../code-snippets/Imports";
+import { modulesExample1Src, modulesExample2Src } from "../code-snippets/Modules";
+import { attributesExample1Src } from "../code-snippets/Attributes";
+import { enumerationsExample1Src, enumerationsExample2Src } from "../code-snippets/Enumerations";
+import { classesExample1Src, classesExample2Src, classesExample3Src } from "../code-snippets/Classes";
+import { doccumentationCommentsExample1Src } from "../code-snippets/DoccumentationComments";
 
 const compilingEARLBash = `cd EARL
 mkdir build
@@ -30,6 +36,16 @@ make
 sudo make install
 make test
 `;
+
+const attributesTableData = [
+    { name: "@pub", vars: "YES", funcs: "YES", classes: "YES", enums: "YES", desc: "Makes the identifier available to other files" },
+    { name: "@world", vars: "YES", funcs: "YES", classes: "UNIMPLEMENTED", enums: "UNIMPLEMENTED", desc: "The identifier closes in the world scope" },
+    { name: "@ref", vars: "YES", funcs: "NO*", classes: "NO", enums: "NO", desc: "Declares the variable to be a reference (see the note below)" },
+    { name: "@const", vars: "YES", funcs: "NO", classes: "NO", enums: "NO", desc: "Declares the variable as constant" },
+    { name: "@experimental", vars: "YES", funcs: "YES", classes: "YES", enums: "YES", desc: "Shows an `experimental` warning once upon use" },
+];
+
+const attributesTableColumns = ["Name", "Variables", "Functions", "Classes", "Enumerations", "Description"];
 
 const compilingMakeTableData = [
     { opt: "<none>", desc: "Builds the project" },
@@ -99,7 +115,7 @@ const binaryOperationsData = [
 
 const binaryOperationsColumns = ["Symbol", "Datatypes", "Description"];
 
-const EARL_language_reference = [
+const grammarAndFeatures = [
     {
         title: "Notes",
         content: (
@@ -570,6 +586,298 @@ const EARL_language_reference = [
             },
         ],
     },
+    {
+        title: "Forever Loops",
+        content: (
+            <>
+                <EARLInfo text='The point of Forever loops is in their name, they will loop forever until manually breaking out of them.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`loop` { [stmt] }' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: [
+                    <>
+                        <EARLCodeSnippet code={foreverLoopsExample1Src} language={'armasm'} />
+                    </>
+                ],
+            },
+        ],
+    },
+    {
+        title: "Function Definitions",
+        content: (
+            <>
+                <EARLInfo text='This is how to create a function. The `@world`, `@pub` and `@ref` are attributes.' />
+                <EARLInfo text='See *Attributes* for a description on them.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='TODO: fix grammar' />
+                        <EARLInfo text='*(<attr>)' />
+                        <EARLInfo text='`fn` <id>(*(`@ref`|`@const`) <id> ?(`:` <type>)) ?(`:` <type>) { [stmt] }' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={functionDefinitionsExample1Src} language={'armasm'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Imports",
+        content: (
+            <>
+                <EARLInfo text='EARL looks for the files relative to the directory that it was invoked in. During runtime, if an `import`' />
+                <EARLInfo text='statement is hit, it will immediately interpret that file. If there is no processing in the `@world` scope,' />
+                <EARLInfoSpace>
+                    <EARLInfo text='only the variables, function definitions, enums, and classes are gathered.' />
+                </EARLInfoSpace>
+                <EARLInfo text='If importing something from the stdlib, you want to start the import string with "std/" then the file' />
+                <EARLInfo text='name. It will look at the prefix that the project was compiled with that CMake set up' />
+                <EARLInfo text='(`-DINSTALL_PREFIX`) and append "EARL/" to it. If you did not do this, or this section does not make' />
+                <EARLInfo text='any sense, then the stdlib is most likely installed in `/usr/local`.' />
+                <EARLInfoSpace>
+                    <EARLInfo text='tl;dr make sure to put "std/" before the filename if using the stdlib.' />
+                </EARLInfoSpace>
+                <EARLInfo text='When importing, a depth can be specified. Use `full` if you want all public elements from the file' />
+                <EARLInfo text='(enums, functions, variables, classes, etc.), or `almost` if you only desire public variables and enums.' />
+                <EARLInfoSpace>
+                    <EARLInfo text='If none is provided, full will be used by default.' />
+                </EARLInfoSpace>
+                <EARLInfo text='If the module name of the file that is being imported is not known, or it is undesired, you can rename' />
+                <EARLInfo text='it using the `as` keyword followed by some identifier.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`import` <expr>`;` ?(`full`|`almost`) ?(`as` <id>)' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={importsExample1Src} language={'armasm'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Modules",
+        content: (
+            <>
+                <EARLInfo text='Modules allow other files to access resources to the file that has the module declared in it. If a file' />
+                <EARLInfo text='does not have it, the entire file is private. While modules do allow other files to access resources, only' />
+                <EARLInfoSpace>
+                    <EARLInfo text='resources that have the `@pub` attribute (see *Attributes*). ' />
+                </EARLInfoSpace>
+                <EARLInfoSpace>
+                    <EARLInfo text='To access some identifer from a different module, you use `::` syntax (similar to `c++` namespaces). ' />
+                </EARLInfoSpace>
+                <EARLInfo text='*It is expected to have the module declaration at the top of the file. If you do not follow this rule, undefined behavior may occur*.' />
+                <EARLInfo text=' If you forget, the interpreter will throw a warning (with the exception of using the REPL as the REPL module is not required).' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`module` <id>' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLInfo text='Output of `tree`' />
+                        <EARLInfoIndent>
+                            <EARLInfo text='.' />
+                            <EARLInfo text='├── main.earl' />
+                            <EARLInfo text='└── my-math.earl' />
+                            <EARLInfo text='1 directory, 2 files' />
+                        </EARLInfoIndent>
+                        <EARLInfo text='File: `my-math.earl`' />
+                        <EARLCodeSnippet code={modulesExample1Src} language={'armasm'} />
+                        <EARLInfo text='File: `main.earl`' />
+                        <EARLCodeSnippet code={modulesExample2Src} language={'armasm'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Attributes",
+        content: (
+            <>
+                <EARLInfo text='Attributes embeds meta information into identifiers. You can have none, one, or multiple.' />
+                <EARLInfoIndent>
+                    <EARLTable columns={attributesTableColumns} data={attributesTableData} />
+                </EARLInfoIndent>
+                <EARLInfo text='*Note*: `@ref` can be used in a function parameter and that function will take a reference to the value passed to it.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='*(`@`(`pub` | `world` | `ref` | `const` | `experimental`))' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={attributesExample1Src} language={'armasm'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Enumerations",
+        content: (
+            <>
+                <EARLInfo text="Enumerations (enums) act as it's own datatype, but they are just integers. They compose of comma" />
+                <EARLInfo text='separated identifiers and each identifier can optionally have an assignment to it. By default, if no' />
+                <EARLInfo text='assignments are made, it starts at 0 and increments by 1 for each enum item. Once an assignment is' />
+                <EARLInfoSpace>
+                    <EARLInfo text='found, it will start incrementing from *that number*.' />
+                </EARLInfoSpace>
+                <EARLInfo text='To access an enum element, use the dot `.` notation i.e, `MyEnum.Element1` and can be accessed from' />
+                <EARLInfo text='other modules using the double colon `::` notation (as long as it has the `@pub` attribute). ' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='TODO' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={enumerationsExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={enumerationsExample2Src} language={'armasm'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Classes",
+        content: (
+            <>
+                <EARLInfoSpace>
+                    <EARLInfo text='While classes are available, I am not planning on implementing inheritance.' />
+                </EARLInfoSpace>
+                <EARLInfo text='1. All member variable assignments will happen. If the class has bracket notation `[ ... ]`, it will use these.' />
+                <EARLInfo text='2. If there is a function called `constructor` in the class, that function will immediately happen.' />
+                <EARLInfo text='3. For visibility:' />
+                <EARLInfoIndent>
+                    <EARLInfoSpace>
+                        <EARLInfo text='- All member variables that have the `@pub` attribute will be visible outside of the class scope,' />
+                        <EARLInfo text='including other modules (if the class is marked as `@pub`).' />
+                    </EARLInfoSpace>
+                    <EARLInfoSpace>
+                        <EARLInfo text='- All methods that have the `@pub` attribute will be visible outside of the class scope, including' />
+                        <EARLInfo text='other modules (if the class is marked as `@pub`).' />
+                    </EARLInfoSpace>
+                    <EARLInfo text='- Everything that does not have `@pub` will only be visibile to the class scope.' />
+                </EARLInfoIndent>
+                <EARLInfoSpace>
+                    <EARLInfo text='4. The use of the `this` keyword is optional.' />
+                </EARLInfoSpace>
+                <EARLInfo text='To use *public* member variables or *public* methods from outside of the class scope, you use the dot `.`' />
+                <EARLInfo text='notation, i.e., `MyClass.member_var` or `MyClass.my_method()`. ' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='*(<attr>)' />
+                        <EARLInfo text='`class` <id> `[`*(<id> ?(`:` <type>))`]` `{`' />
+                        <EARLInfo text='*(<let stmt>)' />
+                        <EARLInfo text='?(`fn` `constructor()` { ... })'  />
+                        <EARLInfo text='*(<function definitions>) '  />
+                        <EARLInfo text='`}`'  />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={classesExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={classesExample2Src} language={'armasm'} />
+                        <EARLCodeSnippet code={classesExample3Src} language={'armasm'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Documentation Comments",
+        content: (
+            <>
+                <EARLInfo text='Documentation Comments allow you to embed help information into variables, functions, enums,' />
+                <EARLInfoSpace>
+                    <EARLInfo text='and classes. The information can be retrieved by calling the intrinsic function `help()` on the appropriate identifier.' />
+                </EARLInfoSpace>
+                <EARLInfo text='*Note*: When using these, a variable, function, enum, or class *must* be immediately after it. ' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='*(#-- <text>) <Variable> | <Function> | <Enum> | <Class>' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={doccumentationCommentsExample1Src} language={'armasm'} />
+                    </>
+                ),
+            },
+        ],
+    },
 ];
 
 const sections = [
@@ -672,13 +980,16 @@ const sections = [
         ),
     },
     {
-        title: "EARL Language Reference",
+        title: "Grammar and Features",
         content: (
             <>
                 <EARLInfo text='This is the manual for how to use EARL.' />
             </>
         ),
-        subsections: EARL_language_reference,
+        subsections: grammarAndFeatures,
+    },
+    {
+        
     },
 ];
 
