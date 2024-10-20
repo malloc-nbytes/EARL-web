@@ -24,6 +24,16 @@ import { attributesExample1Src } from "../code-snippets/Attributes";
 import { enumerationsExample1Src, enumerationsExample2Src } from "../code-snippets/Enumerations";
 import { classesExample1Src, classesExample2Src, classesExample3Src } from "../code-snippets/Classes";
 import { doccumentationCommentsExample1Src } from "../code-snippets/DoccumentationComments";
+import { fstrExample1Src } from "../code-snippets/Fstr";
+import { listExample1Src } from "../code-snippets/List";
+import { rangeExample1Src } from "../code-snippets/Range";
+import { sliceExample1Src } from "../code-snippets/Slice";
+import { tupleExample1Src } from "../code-snippets/Tuple";
+import { optionExample1Src, optionExample2Src } from "../code-snippets/Option";
+import { closureCXXExample1Src, closureExample1Src, closureExample2Src } from "../code-snippets/Closure";
+import { typeKWExample1Src } from "../code-snippets/TypeKW";
+import { dictionaryExample1Src } from "../code-snippets/Dictionary";
+import { unitExample1Src } from "../code-snippets/Unit";
 
 const compilingEARLBash = `cd EARL
 mkdir build
@@ -131,21 +141,6 @@ const grammarAndFeatures = [
                     <EARLInfo text='*(text) means either 0 or more of' />
                     <EARLInfo text='?(text) means either 0 or 1 of.' />
                 </EARLInfoIndent>
-            </>
-        ),
-    },
-    {
-        title: "Your First Program, Hello World!",
-        content: (
-            <>
-                <EARLInfo text='To jump right into testing out EARL, do the following to implement a Hello World! program.' />
-                <EARLInfo text='Create a new file called `hello.earl` and put the follow code in it:' />
-                <EARLCodeSnippet code={yourFirstProgramSrc} language={'armasm'} />
-                <EARLInfo text='Then run:' />
-                <EARLCodeSnippet code={'earl ./hello.earl'} language={'bash'} />
-                <EARLInfo text='Output:' />
-                <EARLCodeSnippet code={yourFirstProgramOutput} language={'bash'} />
-                <EARLInfo text='For more information on `module Main`, see section *Modules*.' />
             </>
         ),
     },
@@ -880,6 +875,248 @@ const grammarAndFeatures = [
     },
 ];
 
+const datatypesSections = [
+    {
+        title: "int",
+        content: (
+            <>
+                <EARLInfoSpace>
+                    <EARLInfo text='Your basic 32-bit integer.' />
+                </EARLInfoSpace>
+                <EARLInfo text='*Note*: They *do* over/under-flow.' />
+            </>
+        ),
+    },
+    {
+        title: "float",
+        content: (
+            <>
+                <EARLInfoSpace>
+                    <EARLInfo text='Your basic 64-bit floating point number.' />
+                </EARLInfoSpace>
+                <EARLInfo text='*Note*: They *do* over/under-flow.' />
+            </>
+        ),
+    },
+    {
+        title: "bool",
+        content: (
+            <>
+                <EARLInfo text='The boolean datatype. Can either be `true` or `false`.' />
+            </>
+        ),
+    },
+    {
+        title: "char",
+        content: (
+            <>
+                <EARLInfo text="A single character. They are surrounded by single quotes `'`." />
+            </>
+        ),
+    },
+    {
+        title: "str",
+        content: (
+            <>
+                <EARLInfo text="A string is a list of `char`'s. They are surrounded with double quotes." />
+            </>
+        ),
+        subsections: [
+            {
+                title: "fstr",
+                content: (
+                    <>
+                        <EARLInfo text='`fstr` is syntax sugar to put variables inside of a string literal. They start with `f` followed by a string literal.' />
+                        <EARLInfoSpace>
+                            <EARLInfo text='All identifiers enclosed with `{ }` will have their value stringified.' />
+                        </EARLInfoSpace>
+                        <EARLInfo text='*Note*: They currently only work with *identifiers*.' />
+                        <EARLCodeSnippet code={fstrExample1Src} language={'armasm'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "list",
+        content: (
+            <>
+                <EARLInfo text="A list is a growable array. They can hold any datatype, and you can even mix multiple datatypes in a" />
+                <EARLInfo text="single list. They can be initialized with braces or a `range`." />
+                <EARLCodeSnippet code={listExample1Src} language={'armasm'} />
+            </>
+        ),
+        subsections: [
+            {
+                title: "range",
+                content: (
+                    <>
+                        <EARLInfo text='Ranges are not their own datatype, they are just syntax sugar for a list. For example:' />
+                        <EARLCodeSnippet code={rangeExample1Src} language={'armasm'} />
+                    </>
+                ),
+            }
+        ],
+    },
+    {
+        title: "slice",
+        content: (
+            <>
+                <EARLInfo text="Currently, `slice` types are only useful for indexing a `list`. They allow you to take a slice of the `list`" />
+                <EARLInfoSpace>
+                    <EARLInfo text="and create a new list of those elements. They are two expressions separated by a colon `:`." />
+                </EARLInfoSpace>
+                <EARLInfoSpace>
+                    <EARLInfo text="A `slice` is defined by:" />
+                </EARLInfoSpace>
+                <EARLInfoIndent>
+                    <Latex>
+                        {`\\text{Given a "starting" and "ending" expression } S, E \\in \\mathbb{Z} \\text{ where } S \\le E \\text{ and some nonempty list of elements } L \\text{ then}`}
+                    </Latex>
+                    <EARLInfoIndent>
+                        <Latex>
+                            {`L_{S:E} = [L_S, L_{S+1}, L_{S+2}, ..., L_{E-1}]`}
+                        </Latex>
+                    </EARLInfoIndent>
+                    <Latex>
+                        {`\\text{and}`}
+                    </Latex>
+                    <EARLInfoIndent>
+                        <Latex>
+                            {`\\text{if } S \\text{ is either empty or unit, then } S = 0,`}
+                        </Latex>
+                    </EARLInfoIndent>
+                    <EARLInfoIndent>
+                        <Latex>
+                            {`\\text{if } E \\text{ is either empty or unit, then } E = |L|,`}
+                        </Latex>
+                    </EARLInfoIndent>
+                    <EARLInfoIndent>
+                        <Latex>
+                            {`\\text{if both } S \\text{ and } E \\text{ are either empty or unit, then } L_{S:E} = L.`}
+                        </Latex>
+                    </EARLInfoIndent>
+                </EARLInfoIndent>
+                <EARLCodeSnippet code={sliceExample1Src} language={'armasm'} />
+            </>
+        ),
+    },
+    {
+        title: "tuple",
+        content: (
+            <>
+                <EARLInfo text='A `tuple` is the exact same thing as a `list` except they are immutable. You cannot reassign,' />
+                <EARLInfoSpace>
+                    <EARLInfo text='append, or modify a `tuple`. You can use bracket notation `[]` to index values.' />
+                </EARLInfoSpace>
+                <EARLInfo text='They can be created by using parenthesis and having elements be separated by commas (*including tuples of size 1*):' />
+                <EARLCodeSnippet code={tupleExample1Src} language={'armasm'} />
+                <EARLInfo text='*Note*: If an empty tuple is desired (why would you ever want this?) you can use the intrinsic casting' />
+                <EARLInfo text='function `tuple()` i.e., `let empty_tuple = tuple();`.' />
+            </>
+        ),
+    },
+    {
+        title: "TypeKW",
+        content: (
+            <>
+                <EARLInfo text='`TypeKW` (or Type Keyword) are global identifiers for types. You are unable to do any operations on' />
+                <EARLInfoSpace>
+                    <EARLInfo text='them except for passing them around as variables, using them as raw values, or doing equality `==` or `!=`.' />
+                </EARLInfoSpace>
+                <EARLInfo text='*Note*: These are not the same as the casting functions.' />
+                <EARLCodeSnippet code={typeKWExample1Src} language={'armasm'} />
+            </>
+        ),
+    },
+    {
+        title: "option",
+        content: (
+            <>
+                <EARLInfo text='Because all variables need to be initialized when using a `let` statement, it may be annoying to be' />
+                <EARLInfo text='forced to give it some initial value. The `none` type allows you to set a variable to it and can be' />
+                <EARLInfoSpace>
+                    <EARLInfo text='reassigned later.' />
+                </EARLInfoSpace>
+                <EARLInfo text='To assign a value to a `none` type, you must wrap it in `some` i.e.,' />
+                <EARLCodeSnippet code={optionExample1Src} language={'armasm'} />
+
+                <EARLInfoSpace>
+                    <EARLInfo text='The underlying value (in the above example, 9) can be extracted out using the unwrap() member intrinsic.' />
+                </EARLInfoSpace>
+                <EARLInfo text='Another important note is that the underlying value that the `option` holds is dynamic:' />
+                <EARLCodeSnippet code={optionExample2Src} language={'armasm'} />
+            </>
+        ),
+    },
+    {
+        title: "closure",
+        content: (
+            <>
+                <EARLInfo text='Closures are anonymous functions that close in the outer scope. They can be used as functions or' />
+                <EARLInfo text='passed around as variables. The closure parameters are surrouned by vertical bars `||`. If a closure' />
+                <EARLInfoSpace>
+                    <EARLInfo text='does not take any parameters, then the item inside of the vertical bars is `_` i.e., `|_|`.' />
+                </EARLInfoSpace>
+                <EARLInfo text='Here is an example of `c++` lambdas and the equivalent EARL closures.' />
+                <EARLCodeSnippet code={closureCXXExample1Src} language={'cpp'} />
+                <EARLCodeSnippet code={closureExample1Src} language={'armasm'} />
+                <EARLInfo text='Some other examples:' />
+                <EARLCodeSnippet code={closureExample2Src} language={'armasm'} />
+            </>
+        ),
+    },
+    {
+        title: "dictionary",
+        content: (
+            <>
+                <EARLInfo text='A `dictionary` is a collection of key-value pairs. Every key has an associated value. If a `dictionary` is' />
+                <EARLInfo text='indexed with a key that *does not* exist, it will return a `none` value. If the value *does* exist, it will return' />
+                <EARLInfo text='it in a wrapped `some` value. They can be created with a brace initializer list where keys and values' />
+                <EARLInfoSpace>
+                    <EARLInfo text='are separed by a colon `:` and entries are separated by a comma `,`.' />
+                </EARLInfoSpace>
+                <EARLInfo text='The keys in dictionaries must be uniform throughout, although the values can be of any type. They' />
+                <EARLInfo text='must also be initalized with data so it can infer the type of the keys, however you may want an empty' />
+                <EARLInfo text='dictionary. This can be done by using the `Dict(type: TypeKW) -> Dict<type>` function which will' />
+                <EARLInfo text='produce an empty dictionary that holds keys of type `type`.' />
+                <EARLCodeSnippet code={dictionaryExample1Src} language={'armasm'} />
+            </>
+        ),
+    },
+    {
+        title: "file",
+        content: (
+            <>
+                <EARLInfo text='The `file` type is a file handler. It handles opening, closing, reading, and writing to files. The way to' />
+                <EARLInfoSpace>
+                    <EARLInfo text='get a file handler is by using the intrinsic function `open()` (see *Intrinsics*).' />
+                </EARLInfoSpace>
+                <EARLInfo text='*Note*: It is up to the user to `close()` the file handle.' />
+            </>
+        ),
+    },
+    {
+        title: "time",
+        content: (
+            <>
+                <EARLInfo text='This is a datatype representing time. It contains the values of the years, months, days, hours,' />
+                <EARLInfo text='minutes, and seconds of the current date.' />
+            </>
+        ),
+    },
+    {
+        title: "unit",
+        content: (
+            <>
+                <EARLInfo text='The unit type is used as a "throwaway" or `void`. It essentially throws away the value that gets assigned to it.' />
+                <EARLInfo text='The following are some examples of correct usages of it:' />
+                <EARLCodeSnippet code={unitExample1Src} language={'armasm'} />
+            </>
+        ),
+    },
+];
+
 const sections = [
     {
         title: "Important Notes",
@@ -980,16 +1217,37 @@ const sections = [
         ),
     },
     {
+        title: "Your First Program",
+        content: (
+            <>
+                <EARLInfo text='To jump right into testing out EARL, do the following to implement a Hello World! program.' />
+                <EARLInfo text='Create a new file called `hello.earl` and put the follow code in it:' />
+                <EARLCodeSnippet code={yourFirstProgramSrc} language={'armasm'} />
+                <EARLInfo text='Then run:' />
+                <EARLCodeSnippet code={'earl ./hello.earl'} language={'bash'} />
+                <EARLInfo text='Output:' />
+                <EARLCodeSnippet code={yourFirstProgramOutput} language={'bash'} />
+                <EARLInfo text='For more information on `module Main`, see section *Modules*.' />
+            </>
+        ),
+    },
+    {
         title: "Grammar and Features",
         content: (
             <>
-                <EARLInfo text='This is the manual for how to use EARL.' />
+                <EARLInfo text='This section contains all grammar and features of EARL.' />
             </>
         ),
         subsections: grammarAndFeatures,
     },
     {
-        
+        title: "Datatypes",
+        content: (
+            <>
+                <EARLInfo text='The following is a list of the currently implemented primitive types.' />
+            </>
+        ),
+        subsections: datatypesSections,
     },
 ];
 
