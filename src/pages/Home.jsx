@@ -1,5 +1,6 @@
 import EARLLegend from "../components/EARLLegend";
 import EARLNavbar from "../components/EARLNavbar";
+import earlLogo from '../assets/earl-logo.jpg';
 
 function Home() {
     const mainColors = [
@@ -23,7 +24,11 @@ function Home() {
     const mainClassName = [...mainColors, ...mainSize, ...mainLoc].join(" ");
 
     return (
-        <main className={mainClassName}>
+        <main className={`relative ${mainClassName} overflow-hidden`}>
+            <div className="absolute inset-0 z-0">
+                <div className={`w-full h-full bg-cover bg-no-repeat filter blur-[15px]`} style={{ backgroundImage: `url(${earlLogo})` }}></div>
+                <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black opacity-30 z-0"></div>
+            </div>
             <EARLNavbar selected={"home"} />
             <EARLLegend />
         </main>

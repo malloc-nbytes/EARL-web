@@ -1814,22 +1814,50 @@ const sections = [
     },
 ];
 
+
 function EARLSideBar({ sections }) {
+    const scrollToSection = (sectionIndex, subIndex) => {
+        const targetId = subIndex !== undefined ? `section${sectionIndex}-subsection${subIndex}` : `section${sectionIndex}`;
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+            const offsetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 50; // 10 pixels offset
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth" // Optional smooth scrolling
+            });
+        }
+    };
+
     return (
-        <div className="fixed top-0 left-0 w-64 h-full bg-slate-950 text-white p-4 overflow-auto">
-            <h2 className="text-2xl font-semibold mb-6">Documentation</h2>
+        <div className="fixed top-0 left-0 w-64 h-full bg-slate-950 text-white p-4 overflow-auto z-30">
+            <h2 className="text-2xl font-semibold mb-6">EA<span className="text-blue-400">RL</span> Documentation</h2>
             <ul className="space-y-4">
                 {sections.map((section, sectionIndex) => {
                     return (
                         <li key={sectionIndex}>
-                            <a href={"#section" + sectionIndex} className="text-blue-400 hover:text-blue-600">
+                            <a
+                                href={`#section${sectionIndex}`}
+                                onClick={(e) => {
+                                    e.preventDefault(); // Prevent default anchor behavior
+                                    scrollToSection(sectionIndex); // Call custom scroll function
+                                }}
+                                className="text-blue-400 hover:text-blue-600"
+                            >
                                 {section.title}
                             </a>
                             {section.subsections && section.subsections.length > 0 && (
                                 <ul className="pl-4 space-y-2">
                                     {section.subsections.map((subsection, subIndex) => (
                                         <li key={subIndex}>
-                                            <a href={"#section" + sectionIndex + "-subsection" + subIndex} className="text-blue-300 hover:text-blue-500">
+                                            <a
+                                                href={`#section${sectionIndex}-subsection${subIndex}`}
+                                                onClick={(e) => {
+                                                    e.preventDefault(); // Prevent default anchor behavior
+                                                    scrollToSection(sectionIndex, subIndex); // Call custom scroll function
+                                                }}
+                                                className="text-blue-300 hover:text-blue-500"
+                                            >
                                                 {subsection.title}
                                             </a>
                                         </li>
@@ -1949,6 +1977,8 @@ function Documentation() {
     return (
         <div className={mainClassName}>
             <EARLNavbar selected={"documentation"} />
+            {/* add padding above */}
+            <div className="pt-16" />
             <ContentWrapper sections={sections} />
 
             {/* Scroll to Top Button */}
