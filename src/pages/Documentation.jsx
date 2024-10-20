@@ -34,6 +34,89 @@ import { closureCXXExample1Src, closureExample1Src, closureExample2Src } from ".
 import { typeKWExample1Src } from "../code-snippets/TypeKW";
 import { dictionaryExample1Src } from "../code-snippets/Dictionary";
 import { unitExample1Src } from "../code-snippets/Unit";
+import {
+    printDef,
+    printlnDef,
+    helpDef,
+    sinDef,
+    cosDef,
+    setFlagDef,
+    unsetFlagDef,
+    inputDef,
+    intDef,
+    floatDef,
+    strDef,
+    boolDef,
+    tupleDef,
+    listDef,
+    dictDef,
+    assertDef,
+    lenDef,
+    someDef,
+    typeDef,
+    typeofDef,
+    argvDef,
+    openDef,
+    unimplementedDef,
+    datetimeDef,
+    sleepDef,
+    envDef,
+    initSeedDef,
+    randomDef,
+} from "../code-snippets/Intrinsics";
+import {
+    listAppend,
+    listPop,
+    listRev,
+    listFilter,
+    listForeach,
+    listMap,
+    listFold,
+    listContains,
+} from "../code-snippets/ListMemberIntrinsics";
+import {
+    strAppend,
+    strPop,
+    strRev,
+    strFilter,
+    strForeach,
+    strSplit,
+    strContains,
+} from "../code-snippets/StrMemberIntrinsics";
+import {
+    dictInsert,
+    dictHasKey,
+    dictHasValue,
+} from "../code-snippets/DictionaryMemberIntrinsics";
+import {
+    tupleRev,
+    tupleFilter,
+    tupleForeach,
+    tupleContains,
+} from "../code-snippets/TupleMemberIntrinsics";
+import { charAscii } from "../code-snippets/CharMemberIntrinsics";
+import {
+    optionIsNone,
+    optionIsSome,
+    optionUnwrap,
+} from "../code-snippets/OptionMemberIntrinsics";
+import {
+    fileClose,
+    fileRead,
+    fileDump,
+    fileWrite,
+    fileWriteLines,
+} from "../code-snippets/FileMemberIntrinsics";
+import {
+    timeRaw,
+    timeReadable,
+    timeYears,
+    timeMonths,
+    timeDays,
+    timeHours,
+    timeMinutes,
+    timeSeconds,
+} from "../code-snippets/TimeMemberIntrinsics";
 
 const compilingEARLBash = `cd EARL
 mkdir build
@@ -1117,6 +1200,446 @@ const datatypesSections = [
     },
 ];
 
+const intrinsicsSections = [
+    {
+        title: "print()",
+        content: (
+            <>
+                <EARLCodeSnippet code={printDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Will print all elements given.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "println()",
+        content: (
+            <>
+                <EARLCodeSnippet code={printlnDef} language={'armasm'} />
+                <EARLInfoIndent>
+                    <EARLInfoSpace><EARLInfo text='Will print all elements given and add a newline. Will flush the output.' /></EARLInfoSpace>
+                    <EARLInfo text='*Note*: If given a class or enum, both this function and `print()` will do an in-depth print showing all' />
+                    <EARLInfo text='variables that they contain as well as their value. This is very helpful for debugging.' />
+                </EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "help()",
+        content: (
+            <>
+                <EARLCodeSnippet code={helpDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Will return a `str` of all doc comments (see *Documentation Comments*) associated with the identifer `id`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "sin()",
+        content: (
+            <>
+                <EARLCodeSnippet code={sinDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Will return the sin of `arg`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "cos()",
+        content: (
+            <>
+                <EARLCodeSnippet code={cosDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Will return the cosine of `arg`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "set_flag()",
+        content: (
+            <>
+                <EARLCodeSnippet code={setFlagDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Will set the command line flag `flag` during runtime.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "unset_flag()",
+        content: (
+            <>
+                <EARLCodeSnippet code={unsetFlagDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Will unset the command line flag `flag` during runtime.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "input()",
+        content: (
+            <>
+                <EARLCodeSnippet code={inputDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Will print all elements given. Gets input from the user and returns it as a `str`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "int()",
+        content: (
+            <>
+                <EARLCodeSnippet code={intDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Casts `arg` to an `int`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "float()",
+        content: (
+            <>
+                <EARLCodeSnippet code={floatDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Casts `arg` to a `float`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "str()",
+        content: (
+            <>
+                <EARLCodeSnippet code={strDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Casts `arg` to a `str`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "bool()",
+        content: (
+            <>
+                <EARLCodeSnippet code={boolDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Casts `arg` to a `bool`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "tuple()",
+        content: (
+            <>
+                <EARLCodeSnippet code={tupleDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Cast the values to a `tuple`. You can also supply 0 arguments to create an empty `tuple`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "list()",
+        content: (
+            <>
+                <EARLCodeSnippet code={listDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Cast the values to a `list`. You can also supply 0 arguments to create an empty `list`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "Dict()",
+        content: (
+            <>
+                <EARLCodeSnippet code={dictDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Creates a new *empty* `dictionary` that holds keys of type `ty`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "assert()",
+        content: (
+            <>
+                <EARLCodeSnippet code={assertDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Tests each argument. If any of the conditions fail, the program immediately crashes.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "len()",
+        content: (
+            <>
+                <EARLCodeSnippet code={lenDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Expects either a `list`, `string`, or `tuple`. Will give the length as an integer.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "some()",
+        content: (
+            <>
+                <EARLCodeSnippet code={someDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Wraps `arg` in an `option` type.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "type()",
+        content: (
+            <>
+                <EARLCodeSnippet code={typeDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns the type of `arg` as a `str`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "typeof()",
+        content: (
+            <>
+                <EARLCodeSnippet code={typeofDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns the type of `arg` as a `TypeKW`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "argv()",
+        content: (
+            <>
+                <EARLCodeSnippet code={argvDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns a `list` of `str` of the supplied command line arguments that were given by the `--` option.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "open()",
+        content: (
+            <>
+                <EARLCodeSnippet code={openDef} language={'armasm'} />
+                <EARLInfoIndent>
+                    <EARLInfo text='Opens the filepath `fp` with mode `mode`. Mode must either be `r` for read, `w` for write, or `b` for binary.' />
+                    <EARLInfo text='You can also supply multiple modes by combining the letters into a single `str` i.e., `"wrb"`.' />
+                </EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "unimplemented()",
+        content: (
+            <>
+                <EARLCodeSnippet code={unimplementedDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Prints "UNIMPLEMENTED" `arg1..argN` to `stderr` and exits with a non-zero exit code.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "datetime()",
+        content: (
+            <>
+                <EARLCodeSnippet code={datetimeDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns the current date as a `time` type.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "sleep()",
+        content: (
+            <>
+                <EARLCodeSnippet code={sleepDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Sleep for `milli` milliseconds.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "env()",
+        content: (
+            <>
+                <EARLCodeSnippet code={envDef} language={'armasm'} />
+                <EARLInfoIndent>
+                    <EARLInfo text='Get the environment variable `variable` as a `str`.' />
+                    <EARLInfoSpace>
+                        <EARLInfo text='*Note*: Do not put `"$"` in the variable name unless it has one explicitly in the name.' />
+                    </EARLInfoSpace>
+                </EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "init_seed()",
+        content: (
+            <>
+                <EARLCodeSnippet code={initSeedDef} language={'armasm'} />
+                <EARLInfoIndent>
+                    <EARLInfo text='Sets the internal seed to `seed`.' />
+                    <EARLInfoSpace>
+                        <EARLInfo text='*Note*: A good way of getting a random seed is by doing `init_seed(datetime().raw())`.' />
+                    </EARLInfoSpace>
+                </EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "random()",
+        content: (
+            <>
+                <EARLCodeSnippet code={randomDef} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Gives a random number based off of the internal seed from `init_seed()`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+];
+
+const memberIntrinsicsSections = [
+    {
+        title: "list Implements",
+        content: (
+            <>
+                <EARLCodeSnippet code={listAppend} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Will append `arg1..argN` to the list.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={listPop} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Will remove the element at index `idx`.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={listRev} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns a new list that is the reverse of the original.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={listFilter} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Takes the closure `cl` and creates a new list of all the elements where `cl` returns `true`.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={listForeach} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Calls the closure `cl` on each element.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={listMap} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Calls the closure `cl` on each element and creates a new list on the evaluated results.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={listFold} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Calls the closure `cl` on each element with the accumulator `acc`.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={listContains} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Checks to see if `val` is in the list.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "str Implements",
+        content: (
+            <>
+                <EARLCodeSnippet code={strAppend} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Will append `arg1..argN` to the `str`.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={strPop} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Will remove the element at index `idx`.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={strRev} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns a new `str` that is the reverse of the original.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={strFilter} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Takes the closure `cl` and creates a new `str` of all the elements where `cl` returns true.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={strForeach} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Calls the closure `cl` on each element.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={strSplit} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Split a string by the delimiter `delim`.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={strContains} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Checks to see if `val` is in the `str`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "tuple Implements",
+        content: (
+            <>
+                <EARLCodeSnippet code={tupleRev} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns a new `tuple` that is the reverse of the original.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={tupleFilter} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Takes the closure `cl` and creates a new `tuple` of all the elements where `cl` returns true.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={tupleForeach} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Calls the closure `cl` on each element.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={tupleContains} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Checks to see if `val` is in the `tuple`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "dictionary Implements",
+        content: (
+            <>
+                <EARLCodeSnippet code={dictInsert} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Inserts the key `k` and value `v` into the `dictionary`.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={dictHasKey} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns `true` if the key `k` is present in the `dictionary` and `false` if otherwise.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={dictHasValue} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns `true` if the value `v` is present in the `dictionary` and `false` if otherwise.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "char Implements",
+        content: (
+            <>
+                <EARLCodeSnippet code={charAscii} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns the ascii code of the character.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "option Implements",
+        content: (
+            <>
+                <EARLCodeSnippet code={optionIsNone} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns `true` if the value is `none`, `false` otherwise.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={optionIsSome} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns `true` if the value is `some`, `false` otherwise.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={optionUnwrap} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns the inner value of the `option` datatype. If the `option` is `none`, a panic will occur.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "file Implements",
+        content: (
+            <>
+                <EARLCodeSnippet code={fileClose} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Closes an opened file.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={fileRead} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Get the contents of a file as a `str`.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={fileDump} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Print the contents of a file.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={fileWrite} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Writes `msg` to the opened file.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={fileWriteLines} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Writes all elements in the list `msg` to the opened file. At the end of each value, a newline is added.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "time Implements",
+        content: (
+            <>
+                <EARLCodeSnippet code={timeRaw} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Gives the underlying time value as a raw `int`. This is a good way for setting the seed with `init_seed`. ' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={timeReadable} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns the current value of the time object as a `tuple` of `(years, months, days, hours, minutes, seconds)`' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={timeYears} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns the number of years in the `time` object.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={timeMonths} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns the number of months in the `time` object.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={timeDays} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns the number of days in the `time` object.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={timeHours} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns the number of hours in the `time` object.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={timeMinutes} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns the number of minutes in the `time` object.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={timeSeconds} language={'armasm'} />
+                <EARLInfoIndent><EARLInfo text='Returns the number of seconds in the `time` object.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+];
+
 const sections = [
     {
         title: "Important Notes",
@@ -1248,6 +1771,26 @@ const sections = [
             </>
         ),
         subsections: datatypesSections,
+    },
+    {
+        title: "Intrinsics",
+        content: (
+            <>
+                <EARLInfo text='Intrinsics are functions that are automatically built into the interpreter. You do not need to import' />
+                <EARLInfo text='anything to use these functions.' />
+            </>
+        ),
+        subsections: intrinsicsSections,
+    },
+    {
+        title: "Member Intrinsics",
+        content: (
+            <>
+                <EARLInfo text='Member intrinsics are the same as intrinsics, except they are member functions (or methods) that' />
+                <EARLInfo text='types have built into them. You access these with the dot `.` notation i.e. `let r = (1..10).rev();`' />
+            </>
+        ),
+        subsections: memberIntrinsicsSections,
     },
 ];
 
