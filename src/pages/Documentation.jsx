@@ -1,3 +1,6 @@
+import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Latex from "../components/Latex";
 import EARLNavbar from "../components/EARLNavbar";
 import EARLInfo from "../components/EARLInfo";
@@ -1745,7 +1748,7 @@ const sections = [
         content: (
             <>
                 <EARLInfo text='To jump right into testing out EARL, do the following to implement a Hello World! program.' />
-                <EARLInfo text='Create a new file called `hello.earl` and put the follow code in it:' />
+                <EARLInfo text='Create a new file called `hello.earl` and put the following code in it:' />
                 <EARLCodeSnippet code={yourFirstProgramSrc} language={'armasm'} />
                 <EARLInfo text='Then run:' />
                 <EARLCodeSnippet code={'earl ./hello.earl'} language={'bash'} />
@@ -1843,12 +1846,12 @@ function EARLSideBar({ sections }) {
 
 const Section = ({ id, title, content, subsections, extraContent, depth = 0 }) => {
     const titleClass = depth === 0
-        ? "text-4xl font-bold p-4 underline" // Main sections (depth 0)
+        ? "text-4xl font-bold p-4 border-b border-gray-400" // Main sections (depth 0)
         : depth === 1
-        ? "text-3xl font-bold p-4" // First level subsections
+        ? "text-3xl font-bold p-4 border-b border-gray-400"
         : depth === 2
-        ? "text-2xl font-bold p-4" // Second level subsections
-        : "text-xl font-bold p-4"; // Further nested sections
+        ? "text-2xl font-bold p-4 border-b border-gray-400"
+        : "text-xl font-bold p-4 border-b border-gray-400"; // More nested sections
 
     console.log("title: ", title, " titleclass: ", titleClass);
 
@@ -1867,7 +1870,7 @@ const Section = ({ id, title, content, subsections, extraContent, depth = 0 }) =
                             content={subsection.content}
                             subsections={subsection.subsections}
                             extraContent={subsection.extraContent}
-                            depth={depth + 1} // Increment depth for nested subsections
+                            depth={depth + 1}
                         />
                     ))}
                 </div>
@@ -1881,7 +1884,6 @@ const Section = ({ id, title, content, subsections, extraContent, depth = 0 }) =
 const ContentWrapper = ({ sections }) => {
     return (
         <div className="flex">
-            {/* Sidebar */}
             <EARLSideBar sections={sections} />
 
             {/* Main Content */}
@@ -1922,10 +1924,43 @@ function Documentation() {
 
     const mainClassName = [...mainColors, ...mainSize, ...mainLoc].join(" ");
 
+    // State to manage button visibility
+    const [isVisible, setIsVisible] = useState(false);
+
+    const handleScroll = () => {
+        if (window.scrollY > 300) {
+            setIsVisible(true);
+        } else {
+            setIsVisible(false);
+        }
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     return (
         <div className={mainClassName}>
-            <EARLNavbar />
+            <EARLNavbar selected={"documentation"} />
             <ContentWrapper sections={sections} />
+
+            {/* Scroll to Top Button */}
+            {isVisible && (
+                <button
+                    onClick={scrollToTop}
+                    className="fixed bottom-4 right-4 bg-white bg-opacity-30 backdrop-blur-md border border-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-opacity-40 transition-all"
+                    aria-label="Scroll to top"
+                >
+                    <FontAwesomeIcon icon={faChevronUp} />
+                </button>
+            )}
         </div>
     );
 }

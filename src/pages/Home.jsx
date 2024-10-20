@@ -24,7 +24,7 @@ function Home() {
 
     return (
         <main className={mainClassName}>
-            <EARLNavbar />
+            <EARLNavbar selected={"home"} />
             <EARLLegend />
         </main>
     );
