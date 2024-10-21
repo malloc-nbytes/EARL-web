@@ -21,18 +21,11 @@ twosumExample.EARLSrcBruteForce = `fn twosum_brute_force(lst, t) {
 }`;
 
 twosumExample.EARLSrcDict = `fn twosum_optimized(lst, t) {
-    # Create an empty dictionary that holds
-    # keys of type int.
     let found = Dict(int);
 
     for i in 0 to len(lst) {
         let compliment = t - lst[i];
 
-        # Dictionaries will return \`none\` if not
-        # found, and \`none\` results to false if
-        # used in a boolean context. If the item
-        # is found, it will return \`some(value)\`
-        # which results to true in a boolean context.
         if found[compliment] {
             return some((found[compliment].unwrap(), i));
         }

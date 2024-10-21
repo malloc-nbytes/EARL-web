@@ -76,13 +76,15 @@ function EARLNavbar({ selected }) {
                     </li>
                 </ul>
             </nav>
-            {/* Logo aligned to the right */}
-            <div className="">
-                <img 
-                    src={earlLogo} 
-                    alt="EARL Logo" 
-                    className="w-12 h-12 rounded-full object-cover border-4 border-blue-400" 
-                />
+            {/* Logo */}
+            <div>
+                <a href="/home">
+                    <img
+                        src={earlLogo}
+                        alt="EARL Logo"
+                        className="w-12 h-12 rounded-full object-cover border-4 border-blue-400"
+                    />
+                </a>
             </div>
         </header>
     );
