@@ -3,7 +3,7 @@ fn test_world() {
     # \`i\` will print since it is in the world scope.
     # The function is also marked as public so other
     # modules can have access to this function.
-    println(i)
+    println(i);
 }
 
 @pub

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Latex from "../components/Latex";
+import ContentWrapper from "../components/ContentWrapper";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 import EARLNavbar from "../components/EARLNavbar";
 import EARLInfo from "../components/EARLInfo";
 import EARLInfoIndent from "../components/EARLInfoIndent";
@@ -241,7 +241,7 @@ const grammarAndFeatures = [
                     <EARLInfo text='has a type, it will always have that type. If dynamic types are desired, see the `option` datatype in *Datatypes*.' />
                 </EARLInfoSpace>
                 <EARLInfo text='For example:' />
-                <EARLCodeSnippet code={typingExampleSrc} language={'armasm'} />
+                <EARLCodeSnippet code={typingExampleSrc} language={'rust'} />
                 <EARLInfo text='If explicit types are desired, here are the following types that can be used:' />
                 <EARLInfoIndent>
                     <EARLInfo text='int' />
@@ -315,22 +315,22 @@ const grammarAndFeatures = [
                         </EARLInfoSpace>
                         <EARLInfo text='*Note*: Some things will vanish while using the REPL to keep everything clean looking, but I am unable' />
                         <EARLInfo text='to demonstrate it in text, so it will be more verbose than it actually is i.e., `[ENTER TO EVAL]`.' />
-                        <EARLCodeSnippet code={replProgrammingExample1} language={'armasm'} />
+                        <EARLCodeSnippet code={replProgrammingExample1} language={'rust'} />
                         <EARLInfo text="The first result `<unit> -> unit` is the result type of the `let` statement and can be ignored as it's" />
                         <EARLInfoSpace>
                             <EARLInfo text='not important. The second output `1 -> int` is the result of `x;`.' />
                         </EARLInfoSpace>
                         <EARLInfo text='Starting a new session does not remove variables that were created. That means that this is also valid:' />
-                        <EARLCodeSnippet code={replProgrammingExample2} language={'armasm'} />
+                        <EARLCodeSnippet code={replProgrammingExample2} language={'rust'} />
                         <EARLInfo text='If you just want to do some quick math and use EARL as a calculator, here is another example:' />
-                        <EARLCodeSnippet code={replProgrammingExample3} language={'armasm'} />
+                        <EARLCodeSnippet code={replProgrammingExample3} language={'rust'} />
                         <EARLInfo text='It is important to note that if inside `{ }`, `[ ]`, and `( )`, the `<enter><enter>` will not work. It will' />
                         <EARLInfo text='wait to evaluate the statements until you are outside of the nested brackets. This means that if inside' />
                         <EARLInfoSpace>
                             <EARLInfo text='of a class, enum, function, or closure, you can hit <enter> as many times as you want.' />
                         </EARLInfoSpace>
                         <EARLInfo text='For example:' />
-                        <EARLCodeSnippet code={replProgrammingExample4} language={'armasm'} />
+                        <EARLCodeSnippet code={replProgrammingExample4} language={'rust'} />
                         <EARLInfo text='Another cool benefit of using the REPL is importing local files. By using the REPL command `:i`' />
                         <EARLInfo text='<file1> <file2> … <fileN>, it will essentially just insert the code in those files in-place. After doing so,' />
                         <EARLInfoSpace>
@@ -416,7 +416,7 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: (
                     <>
-                        <EARLCodeSnippet code={variableDeclarationsExample1} language={'armasm'} />
+                        <EARLCodeSnippet code={variableDeclarationsExample1} language={'rust'} />
                     </>
                 ),
             },
@@ -442,7 +442,7 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: (
                     <>
-                        <EARLCodeSnippet code={mutationExample1} language={'armasm'} />
+                        <EARLCodeSnippet code={mutationExample1} language={'rust'} />
                     </>
                 ),
             },
@@ -488,7 +488,7 @@ const grammarAndFeatures = [
             {
                 title: "Examples",
                 content: (
-                    <EARLCodeSnippet code={conditionalsExample1} language={"armasm"} />
+                    <EARLCodeSnippet code={conditionalsExample1} language={"rust"} />
                 ),
             },
         ],
@@ -524,10 +524,10 @@ const grammarAndFeatures = [
                 content: (
                     <>
                         <EARLInfo text='TODO: fix syntax highlighting' />
-                        <EARLCodeSnippet code={patternMatchingExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={patternMatchingExample1Src} language={'rust'} />
                         <EARLInfo text={'Output:'} />
                         <EARLInfoIndent><EARLInfo text={patternMatchingExample1Output} /></EARLInfoIndent>
-                        <EARLCodeSnippet code={patternMatchingExample2Src} language={'armasm'} />
+                        <EARLCodeSnippet code={patternMatchingExample2Src} language={'rust'} />
                         <EARLInfo text={'Output:'} />
                         <EARLInfoIndent><EARLInfo text={patternMatchingExample2Output} /></EARLInfoIndent>
                         <EARLInfo text={'*Note*: For more information on `some` and `none`, see `option` in *Datatypes*. For `unwrap()`, see `unwrap` in *Member Intrinsics*.'} />
@@ -568,7 +568,7 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: (
                     <>
-                        <EARLCodeSnippet code={bashCommandsExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={bashCommandsExample1Src} language={'rust'} />
                     </>
                 ),
             },
@@ -594,7 +594,7 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: (
                     <>
-                        <EARLCodeSnippet code={whileLoopsExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={whileLoopsExample1Src} language={'rust'} />
                         <EARLInfo text='Output:' />
                         <EARLInfoIndent><EARLInfo text='012' /></EARLInfoIndent>
                     </>
@@ -631,7 +631,7 @@ const grammarAndFeatures = [
                 title: "Examles",
                 content: (
                     <>
-                        <EARLCodeSnippet code={forLoopsExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={forLoopsExample1Src} language={'rust'} />
                     </>
                 ),
             },
@@ -662,7 +662,7 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: (
                     <>
-                        <EARLCodeSnippet code={foreachLoopsExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={foreachLoopsExample1Src} language={'rust'} />
                     </>
                 ),
             },
@@ -688,7 +688,7 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: [
                     <>
-                        <EARLCodeSnippet code={foreverLoopsExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={foreverLoopsExample1Src} language={'rust'} />
                     </>
                 ],
             },
@@ -717,7 +717,7 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: (
                     <>
-                        <EARLCodeSnippet code={functionDefinitionsExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={functionDefinitionsExample1Src} language={'rust'} />
                     </>
                 ),
             },
@@ -761,7 +761,7 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: (
                     <>
-                        <EARLCodeSnippet code={importsExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={importsExample1Src} language={'rust'} />
                     </>
                 ),
             },
@@ -804,9 +804,9 @@ const grammarAndFeatures = [
                             <EARLInfo text='1 directory, 2 files' />
                         </EARLInfoIndent>
                         <EARLInfo text='File: `my-math.earl`' />
-                        <EARLCodeSnippet code={modulesExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={modulesExample1Src} language={'rust'} />
                         <EARLInfo text='File: `main.earl`' />
-                        <EARLCodeSnippet code={modulesExample2Src} language={'armasm'} />
+                        <EARLCodeSnippet code={modulesExample2Src} language={'rust'} />
                     </>
                 ),
             },
@@ -836,7 +836,7 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: (
                     <>
-                        <EARLCodeSnippet code={attributesExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={attributesExample1Src} language={'rust'} />
                     </>
                 ),
             },
@@ -869,8 +869,8 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: (
                     <>
-                        <EARLCodeSnippet code={enumerationsExample1Src} language={'armasm'} />
-                        <EARLCodeSnippet code={enumerationsExample2Src} language={'armasm'} />
+                        <EARLCodeSnippet code={enumerationsExample1Src} language={'rust'} />
+                        <EARLCodeSnippet code={enumerationsExample2Src} language={'rust'} />
                     </>
                 ),
             },
@@ -922,9 +922,9 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: (
                     <>
-                        <EARLCodeSnippet code={classesExample1Src} language={'armasm'} />
-                        <EARLCodeSnippet code={classesExample2Src} language={'armasm'} />
-                        <EARLCodeSnippet code={classesExample3Src} language={'armasm'} />
+                        <EARLCodeSnippet code={classesExample1Src} language={'rust'} />
+                        <EARLCodeSnippet code={classesExample2Src} language={'rust'} />
+                        <EARLCodeSnippet code={classesExample3Src} language={'rust'} />
                     </>
                 ),
             },
@@ -954,7 +954,7 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: (
                     <>
-                        <EARLCodeSnippet code={doccumentationCommentsExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={doccumentationCommentsExample1Src} language={'rust'} />
                     </>
                 ),
             },
@@ -1018,7 +1018,7 @@ const datatypesSections = [
                             <EARLInfo text='All identifiers enclosed with `{ }` will have their value stringified.' />
                         </EARLInfoSpace>
                         <EARLInfo text='*Note*: They currently only work with *identifiers*.' />
-                        <EARLCodeSnippet code={fstrExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={fstrExample1Src} language={'rust'} />
                     </>
                 ),
             },
@@ -1030,7 +1030,7 @@ const datatypesSections = [
             <>
                 <EARLInfo text="A list is a growable array. They can hold any datatype, and you can even mix multiple datatypes in a" />
                 <EARLInfo text="single list. They can be initialized with braces or a `range`." />
-                <EARLCodeSnippet code={listExample1Src} language={'armasm'} />
+                <EARLCodeSnippet code={listExample1Src} language={'rust'} />
             </>
         ),
         subsections: [
@@ -1039,7 +1039,7 @@ const datatypesSections = [
                 content: (
                     <>
                         <EARLInfo text='Ranges are not their own datatype, they are just syntax sugar for a list. For example:' />
-                        <EARLCodeSnippet code={rangeExample1Src} language={'armasm'} />
+                        <EARLCodeSnippet code={rangeExample1Src} language={'rust'} />
                     </>
                 ),
             }
@@ -1084,7 +1084,7 @@ const datatypesSections = [
                         </Latex>
                     </EARLInfoIndent>
                 </EARLInfoIndent>
-                <EARLCodeSnippet code={sliceExample1Src} language={'armasm'} />
+                <EARLCodeSnippet code={sliceExample1Src} language={'rust'} />
             </>
         ),
     },
@@ -1097,7 +1097,7 @@ const datatypesSections = [
                     <EARLInfo text='append, or modify a `tuple`. You can use bracket notation `[]` to index values.' />
                 </EARLInfoSpace>
                 <EARLInfo text='They can be created by using parenthesis and having elements be separated by commas (*including tuples of size 1*):' />
-                <EARLCodeSnippet code={tupleExample1Src} language={'armasm'} />
+                <EARLCodeSnippet code={tupleExample1Src} language={'rust'} />
                 <EARLInfo text='*Note*: If an empty tuple is desired (why would you ever want this?) you can use the intrinsic casting' />
                 <EARLInfo text='function `tuple()` i.e., `let empty_tuple = tuple();`.' />
             </>
@@ -1112,7 +1112,7 @@ const datatypesSections = [
                     <EARLInfo text='them except for passing them around as variables, using them as raw values, or doing equality `==` or `!=`.' />
                 </EARLInfoSpace>
                 <EARLInfo text='*Note*: These are not the same as the casting functions.' />
-                <EARLCodeSnippet code={typeKWExample1Src} language={'armasm'} />
+                <EARLCodeSnippet code={typeKWExample1Src} language={'rust'} />
             </>
         ),
     },
@@ -1126,13 +1126,13 @@ const datatypesSections = [
                     <EARLInfo text='reassigned later.' />
                 </EARLInfoSpace>
                 <EARLInfo text='To assign a value to a `none` type, you must wrap it in `some` i.e.,' />
-                <EARLCodeSnippet code={optionExample1Src} language={'armasm'} />
+                <EARLCodeSnippet code={optionExample1Src} language={'rust'} />
 
                 <EARLInfoSpace>
                     <EARLInfo text='The underlying value (in the above example, 9) can be extracted out using the unwrap() member intrinsic.' />
                 </EARLInfoSpace>
                 <EARLInfo text='Another important note is that the underlying value that the `option` holds is dynamic:' />
-                <EARLCodeSnippet code={optionExample2Src} language={'armasm'} />
+                <EARLCodeSnippet code={optionExample2Src} language={'rust'} />
             </>
         ),
     },
@@ -1147,9 +1147,9 @@ const datatypesSections = [
                 </EARLInfoSpace>
                 <EARLInfo text='Here is an example of `c++` lambdas and the equivalent EARL closures.' />
                 <EARLCodeSnippet code={closureCXXExample1Src} language={'cpp'} />
-                <EARLCodeSnippet code={closureExample1Src} language={'armasm'} />
+                <EARLCodeSnippet code={closureExample1Src} language={'rust'} />
                 <EARLInfo text='Some other examples:' />
-                <EARLCodeSnippet code={closureExample2Src} language={'armasm'} />
+                <EARLCodeSnippet code={closureExample2Src} language={'rust'} />
             </>
         ),
     },
@@ -1167,7 +1167,7 @@ const datatypesSections = [
                 <EARLInfo text='must also be initalized with data so it can infer the type of the keys, however you may want an empty' />
                 <EARLInfo text='dictionary. This can be done by using the `Dict(type: TypeKW) -> Dict<type>` function which will' />
                 <EARLInfo text='produce an empty dictionary that holds keys of type `type`.' />
-                <EARLCodeSnippet code={dictionaryExample1Src} language={'armasm'} />
+                <EARLCodeSnippet code={dictionaryExample1Src} language={'rust'} />
             </>
         ),
     },
@@ -1198,7 +1198,7 @@ const datatypesSections = [
             <>
                 <EARLInfo text='The unit type is used as a "throwaway" or `void`. It essentially throws away the value that gets assigned to it.' />
                 <EARLInfo text='The following are some examples of correct usages of it:' />
-                <EARLCodeSnippet code={unitExample1Src} language={'armasm'} />
+                <EARLCodeSnippet code={unitExample1Src} language={'rust'} />
             </>
         ),
     },
@@ -1209,7 +1209,7 @@ const intrinsicsSections = [
         title: "print()",
         content: (
             <>
-                <EARLCodeSnippet code={printDef} language={'armasm'} />
+                <EARLCodeSnippet code={printDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Will print all elements given.' /></EARLInfoIndent>
             </>
         ),
@@ -1218,7 +1218,7 @@ const intrinsicsSections = [
         title: "println()",
         content: (
             <>
-                <EARLCodeSnippet code={printlnDef} language={'armasm'} />
+                <EARLCodeSnippet code={printlnDef} language={'rust'} />
                 <EARLInfoIndent>
                     <EARLInfoSpace><EARLInfo text='Will print all elements given and add a newline. Will flush the output.' /></EARLInfoSpace>
                     <EARLInfo text='*Note*: If given a class or enum, both this function and `print()` will do an in-depth print showing all' />
@@ -1231,7 +1231,7 @@ const intrinsicsSections = [
         title: "help()",
         content: (
             <>
-                <EARLCodeSnippet code={helpDef} language={'armasm'} />
+                <EARLCodeSnippet code={helpDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Will return a `str` of all doc comments (see *Documentation Comments*) associated with the identifer `id`.' /></EARLInfoIndent>
             </>
         ),
@@ -1240,7 +1240,7 @@ const intrinsicsSections = [
         title: "sin()",
         content: (
             <>
-                <EARLCodeSnippet code={sinDef} language={'armasm'} />
+                <EARLCodeSnippet code={sinDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Will return the sin of `arg`.' /></EARLInfoIndent>
             </>
         ),
@@ -1249,7 +1249,7 @@ const intrinsicsSections = [
         title: "cos()",
         content: (
             <>
-                <EARLCodeSnippet code={cosDef} language={'armasm'} />
+                <EARLCodeSnippet code={cosDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Will return the cosine of `arg`.' /></EARLInfoIndent>
             </>
         ),
@@ -1258,7 +1258,7 @@ const intrinsicsSections = [
         title: "set_flag()",
         content: (
             <>
-                <EARLCodeSnippet code={setFlagDef} language={'armasm'} />
+                <EARLCodeSnippet code={setFlagDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Will set the command line flag `flag` during runtime.' /></EARLInfoIndent>
             </>
         ),
@@ -1267,7 +1267,7 @@ const intrinsicsSections = [
         title: "unset_flag()",
         content: (
             <>
-                <EARLCodeSnippet code={unsetFlagDef} language={'armasm'} />
+                <EARLCodeSnippet code={unsetFlagDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Will unset the command line flag `flag` during runtime.' /></EARLInfoIndent>
             </>
         ),
@@ -1276,7 +1276,7 @@ const intrinsicsSections = [
         title: "input()",
         content: (
             <>
-                <EARLCodeSnippet code={inputDef} language={'armasm'} />
+                <EARLCodeSnippet code={inputDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Will print all elements given. Gets input from the user and returns it as a `str`.' /></EARLInfoIndent>
             </>
         ),
@@ -1285,7 +1285,7 @@ const intrinsicsSections = [
         title: "int()",
         content: (
             <>
-                <EARLCodeSnippet code={intDef} language={'armasm'} />
+                <EARLCodeSnippet code={intDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Casts `arg` to an `int`.' /></EARLInfoIndent>
             </>
         ),
@@ -1294,7 +1294,7 @@ const intrinsicsSections = [
         title: "float()",
         content: (
             <>
-                <EARLCodeSnippet code={floatDef} language={'armasm'} />
+                <EARLCodeSnippet code={floatDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Casts `arg` to a `float`.' /></EARLInfoIndent>
             </>
         ),
@@ -1303,7 +1303,7 @@ const intrinsicsSections = [
         title: "str()",
         content: (
             <>
-                <EARLCodeSnippet code={strDef} language={'armasm'} />
+                <EARLCodeSnippet code={strDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Casts `arg` to a `str`.' /></EARLInfoIndent>
             </>
         ),
@@ -1312,7 +1312,7 @@ const intrinsicsSections = [
         title: "bool()",
         content: (
             <>
-                <EARLCodeSnippet code={boolDef} language={'armasm'} />
+                <EARLCodeSnippet code={boolDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Casts `arg` to a `bool`.' /></EARLInfoIndent>
             </>
         ),
@@ -1321,7 +1321,7 @@ const intrinsicsSections = [
         title: "tuple()",
         content: (
             <>
-                <EARLCodeSnippet code={tupleDef} language={'armasm'} />
+                <EARLCodeSnippet code={tupleDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Cast the values to a `tuple`. You can also supply 0 arguments to create an empty `tuple`.' /></EARLInfoIndent>
             </>
         ),
@@ -1330,7 +1330,7 @@ const intrinsicsSections = [
         title: "list()",
         content: (
             <>
-                <EARLCodeSnippet code={listDef} language={'armasm'} />
+                <EARLCodeSnippet code={listDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Cast the values to a `list`. You can also supply 0 arguments to create an empty `list`.' /></EARLInfoIndent>
             </>
         ),
@@ -1339,7 +1339,7 @@ const intrinsicsSections = [
         title: "Dict()",
         content: (
             <>
-                <EARLCodeSnippet code={dictDef} language={'armasm'} />
+                <EARLCodeSnippet code={dictDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Creates a new *empty* `dictionary` that holds keys of type `ty`.' /></EARLInfoIndent>
             </>
         ),
@@ -1348,7 +1348,7 @@ const intrinsicsSections = [
         title: "assert()",
         content: (
             <>
-                <EARLCodeSnippet code={assertDef} language={'armasm'} />
+                <EARLCodeSnippet code={assertDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Tests each argument. If any of the conditions fail, the program immediately crashes.' /></EARLInfoIndent>
             </>
         ),
@@ -1357,7 +1357,7 @@ const intrinsicsSections = [
         title: "len()",
         content: (
             <>
-                <EARLCodeSnippet code={lenDef} language={'armasm'} />
+                <EARLCodeSnippet code={lenDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Expects either a `list`, `string`, or `tuple`. Will give the length as an integer.' /></EARLInfoIndent>
             </>
         ),
@@ -1366,7 +1366,7 @@ const intrinsicsSections = [
         title: "some()",
         content: (
             <>
-                <EARLCodeSnippet code={someDef} language={'armasm'} />
+                <EARLCodeSnippet code={someDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Wraps `arg` in an `option` type.' /></EARLInfoIndent>
             </>
         ),
@@ -1375,7 +1375,7 @@ const intrinsicsSections = [
         title: "type()",
         content: (
             <>
-                <EARLCodeSnippet code={typeDef} language={'armasm'} />
+                <EARLCodeSnippet code={typeDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the type of `arg` as a `str`.' /></EARLInfoIndent>
             </>
         ),
@@ -1384,7 +1384,7 @@ const intrinsicsSections = [
         title: "typeof()",
         content: (
             <>
-                <EARLCodeSnippet code={typeofDef} language={'armasm'} />
+                <EARLCodeSnippet code={typeofDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the type of `arg` as a `TypeKW`.' /></EARLInfoIndent>
             </>
         ),
@@ -1393,7 +1393,7 @@ const intrinsicsSections = [
         title: "argv()",
         content: (
             <>
-                <EARLCodeSnippet code={argvDef} language={'armasm'} />
+                <EARLCodeSnippet code={argvDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns a `list` of `str` of the supplied command line arguments that were given by the `--` option.' /></EARLInfoIndent>
             </>
         ),
@@ -1402,7 +1402,7 @@ const intrinsicsSections = [
         title: "open()",
         content: (
             <>
-                <EARLCodeSnippet code={openDef} language={'armasm'} />
+                <EARLCodeSnippet code={openDef} language={'rust'} />
                 <EARLInfoIndent>
                     <EARLInfo text='Opens the filepath `fp` with mode `mode`. Mode must either be `r` for read, `w` for write, or `b` for binary.' />
                     <EARLInfo text='You can also supply multiple modes by combining the letters into a single `str` i.e., `"wrb"`.' />
@@ -1414,7 +1414,7 @@ const intrinsicsSections = [
         title: "unimplemented()",
         content: (
             <>
-                <EARLCodeSnippet code={unimplementedDef} language={'armasm'} />
+                <EARLCodeSnippet code={unimplementedDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Prints "UNIMPLEMENTED" `arg1..argN` to `stderr` and exits with a non-zero exit code.' /></EARLInfoIndent>
             </>
         ),
@@ -1423,7 +1423,7 @@ const intrinsicsSections = [
         title: "datetime()",
         content: (
             <>
-                <EARLCodeSnippet code={datetimeDef} language={'armasm'} />
+                <EARLCodeSnippet code={datetimeDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the current date as a `time` type.' /></EARLInfoIndent>
             </>
         ),
@@ -1432,7 +1432,7 @@ const intrinsicsSections = [
         title: "sleep()",
         content: (
             <>
-                <EARLCodeSnippet code={sleepDef} language={'armasm'} />
+                <EARLCodeSnippet code={sleepDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Sleep for `milli` milliseconds.' /></EARLInfoIndent>
             </>
         ),
@@ -1441,7 +1441,7 @@ const intrinsicsSections = [
         title: "env()",
         content: (
             <>
-                <EARLCodeSnippet code={envDef} language={'armasm'} />
+                <EARLCodeSnippet code={envDef} language={'rust'} />
                 <EARLInfoIndent>
                     <EARLInfo text='Get the environment variable `variable` as a `str`.' />
                     <EARLInfoSpace>
@@ -1455,7 +1455,7 @@ const intrinsicsSections = [
         title: "init_seed()",
         content: (
             <>
-                <EARLCodeSnippet code={initSeedDef} language={'armasm'} />
+                <EARLCodeSnippet code={initSeedDef} language={'rust'} />
                 <EARLInfoIndent>
                     <EARLInfo text='Sets the internal seed to `seed`.' />
                     <EARLInfoSpace>
@@ -1469,7 +1469,7 @@ const intrinsicsSections = [
         title: "random()",
         content: (
             <>
-                <EARLCodeSnippet code={randomDef} language={'armasm'} />
+                <EARLCodeSnippet code={randomDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Gives a random number based off of the internal seed from `init_seed()`.' /></EARLInfoIndent>
             </>
         ),
@@ -1481,28 +1481,28 @@ const memberIntrinsicsSections = [
         title: "list Implements",
         content: (
             <>
-                <EARLCodeSnippet code={listAppend} language={'armasm'} />
+                <EARLCodeSnippet code={listAppend} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Will append `arg1..argN` to the list.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={listPop} language={'armasm'} />
+                <EARLCodeSnippet code={listPop} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Will remove the element at index `idx`.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={listRev} language={'armasm'} />
+                <EARLCodeSnippet code={listRev} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns a new list that is the reverse of the original.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={listFilter} language={'armasm'} />
+                <EARLCodeSnippet code={listFilter} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Takes the closure `cl` and creates a new list of all the elements where `cl` returns `true`.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={listForeach} language={'armasm'} />
+                <EARLCodeSnippet code={listForeach} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Calls the closure `cl` on each element.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={listMap} language={'armasm'} />
+                <EARLCodeSnippet code={listMap} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Calls the closure `cl` on each element and creates a new list on the evaluated results.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={listFold} language={'armasm'} />
+                <EARLCodeSnippet code={listFold} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Calls the closure `cl` on each element with the accumulator `acc`.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={listContains} language={'armasm'} />
+                <EARLCodeSnippet code={listContains} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Checks to see if `val` is in the list.' /></EARLInfoIndent>
             </>
         ),
@@ -1511,25 +1511,25 @@ const memberIntrinsicsSections = [
         title: "str Implements",
         content: (
             <>
-                <EARLCodeSnippet code={strAppend} language={'armasm'} />
+                <EARLCodeSnippet code={strAppend} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Will append `arg1..argN` to the `str`.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={strPop} language={'armasm'} />
+                <EARLCodeSnippet code={strPop} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Will remove the element at index `idx`.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={strRev} language={'armasm'} />
+                <EARLCodeSnippet code={strRev} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns a new `str` that is the reverse of the original.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={strFilter} language={'armasm'} />
+                <EARLCodeSnippet code={strFilter} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Takes the closure `cl` and creates a new `str` of all the elements where `cl` returns true.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={strForeach} language={'armasm'} />
+                <EARLCodeSnippet code={strForeach} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Calls the closure `cl` on each element.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={strSplit} language={'armasm'} />
+                <EARLCodeSnippet code={strSplit} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Split a string by the delimiter `delim`.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={strContains} language={'armasm'} />
+                <EARLCodeSnippet code={strContains} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Checks to see if `val` is in the `str`.' /></EARLInfoIndent>
             </>
         ),
@@ -1538,16 +1538,16 @@ const memberIntrinsicsSections = [
         title: "tuple Implements",
         content: (
             <>
-                <EARLCodeSnippet code={tupleRev} language={'armasm'} />
+                <EARLCodeSnippet code={tupleRev} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns a new `tuple` that is the reverse of the original.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={tupleFilter} language={'armasm'} />
+                <EARLCodeSnippet code={tupleFilter} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Takes the closure `cl` and creates a new `tuple` of all the elements where `cl` returns true.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={tupleForeach} language={'armasm'} />
+                <EARLCodeSnippet code={tupleForeach} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Calls the closure `cl` on each element.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={tupleContains} language={'armasm'} />
+                <EARLCodeSnippet code={tupleContains} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Checks to see if `val` is in the `tuple`.' /></EARLInfoIndent>
             </>
         ),
@@ -1556,13 +1556,13 @@ const memberIntrinsicsSections = [
         title: "dictionary Implements",
         content: (
             <>
-                <EARLCodeSnippet code={dictInsert} language={'armasm'} />
+                <EARLCodeSnippet code={dictInsert} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Inserts the key `k` and value `v` into the `dictionary`.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={dictHasKey} language={'armasm'} />
+                <EARLCodeSnippet code={dictHasKey} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns `true` if the key `k` is present in the `dictionary` and `false` if otherwise.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={dictHasValue} language={'armasm'} />
+                <EARLCodeSnippet code={dictHasValue} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns `true` if the value `v` is present in the `dictionary` and `false` if otherwise.' /></EARLInfoIndent>
             </>
         ),
@@ -1571,7 +1571,7 @@ const memberIntrinsicsSections = [
         title: "char Implements",
         content: (
             <>
-                <EARLCodeSnippet code={charAscii} language={'armasm'} />
+                <EARLCodeSnippet code={charAscii} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the ascii code of the character.' /></EARLInfoIndent>
             </>
         ),
@@ -1580,13 +1580,13 @@ const memberIntrinsicsSections = [
         title: "option Implements",
         content: (
             <>
-                <EARLCodeSnippet code={optionIsNone} language={'armasm'} />
+                <EARLCodeSnippet code={optionIsNone} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns `true` if the value is `none`, `false` otherwise.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={optionIsSome} language={'armasm'} />
+                <EARLCodeSnippet code={optionIsSome} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns `true` if the value is `some`, `false` otherwise.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={optionUnwrap} language={'armasm'} />
+                <EARLCodeSnippet code={optionUnwrap} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the inner value of the `option` datatype. If the `option` is `none`, a panic will occur.' /></EARLInfoIndent>
             </>
         ),
@@ -1595,19 +1595,19 @@ const memberIntrinsicsSections = [
         title: "file Implements",
         content: (
             <>
-                <EARLCodeSnippet code={fileClose} language={'armasm'} />
+                <EARLCodeSnippet code={fileClose} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Closes an opened file.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={fileRead} language={'armasm'} />
+                <EARLCodeSnippet code={fileRead} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Get the contents of a file as a `str`.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={fileDump} language={'armasm'} />
+                <EARLCodeSnippet code={fileDump} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Print the contents of a file.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={fileWrite} language={'armasm'} />
+                <EARLCodeSnippet code={fileWrite} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Writes `msg` to the opened file.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={fileWriteLines} language={'armasm'} />
+                <EARLCodeSnippet code={fileWriteLines} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Writes all elements in the list `msg` to the opened file. At the end of each value, a newline is added.' /></EARLInfoIndent>
             </>
         ),
@@ -1616,28 +1616,28 @@ const memberIntrinsicsSections = [
         title: "time Implements",
         content: (
             <>
-                <EARLCodeSnippet code={timeRaw} language={'armasm'} />
+                <EARLCodeSnippet code={timeRaw} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Gives the underlying time value as a raw `int`. This is a good way for setting the seed with `init_seed`. ' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={timeReadable} language={'armasm'} />
+                <EARLCodeSnippet code={timeReadable} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the current value of the time object as a `tuple` of `(years, months, days, hours, minutes, seconds)`' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={timeYears} language={'armasm'} />
+                <EARLCodeSnippet code={timeYears} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the number of years in the `time` object.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={timeMonths} language={'armasm'} />
+                <EARLCodeSnippet code={timeMonths} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the number of months in the `time` object.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={timeDays} language={'armasm'} />
+                <EARLCodeSnippet code={timeDays} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the number of days in the `time` object.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={timeHours} language={'armasm'} />
+                <EARLCodeSnippet code={timeHours} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the number of hours in the `time` object.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={timeMinutes} language={'armasm'} />
+                <EARLCodeSnippet code={timeMinutes} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the number of minutes in the `time` object.' /></EARLInfoIndent>
 
-                <EARLCodeSnippet code={timeSeconds} language={'armasm'} />
+                <EARLCodeSnippet code={timeSeconds} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the number of seconds in the `time` object.' /></EARLInfoIndent>
             </>
         ),
@@ -1749,7 +1749,7 @@ const sections = [
             <>
                 <EARLInfo text='To jump right into testing out EARL, do the following to implement a Hello World! program.' />
                 <EARLInfo text='Create a new file called `hello.earl` and put the following code in it:' />
-                <EARLCodeSnippet code={yourFirstProgramSrc} language={'armasm'} />
+                <EARLCodeSnippet code={yourFirstProgramSrc} language={'rust'} />
                 <EARLInfo text='Then run:' />
                 <EARLCodeSnippet code={'earl ./hello.earl'} language={'bash'} />
                 <EARLInfo text='Output:' />
@@ -1814,123 +1814,6 @@ const sections = [
     },
 ];
 
-
-function EARLSideBar({ sections }) {
-    const scrollToSection = (sectionIndex, subIndex) => {
-        const targetId = subIndex !== undefined ? `section${sectionIndex}-subsection${subIndex}` : `section${sectionIndex}`;
-        const targetElement = document.getElementById(targetId);
-
-        if (targetElement) {
-            const offsetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 50; // 10 pixels offset
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth" // Optional smooth scrolling
-            });
-        }
-    };
-
-    return (
-        <div className="fixed top-0 left-0 w-64 h-full bg-slate-950 text-white p-4 overflow-auto z-30">
-            <h2 className="text-2xl font-semibold mb-6">EA<span className="text-blue-400">RL</span> Documentation</h2>
-            <ul className="space-y-4">
-                {sections.map((section, sectionIndex) => {
-                    return (
-                        <li key={sectionIndex}>
-                            <a
-                                href={`#section${sectionIndex}`}
-                                onClick={(e) => {
-                                    e.preventDefault(); // Prevent default anchor behavior
-                                    scrollToSection(sectionIndex); // Call custom scroll function
-                                }}
-                                className="text-blue-400 hover:text-blue-600"
-                            >
-                                {section.title}
-                            </a>
-                            {section.subsections && section.subsections.length > 0 && (
-                                <ul className="pl-4 space-y-2">
-                                    {section.subsections.map((subsection, subIndex) => (
-                                        <li key={subIndex}>
-                                            <a
-                                                href={`#section${sectionIndex}-subsection${subIndex}`}
-                                                onClick={(e) => {
-                                                    e.preventDefault(); // Prevent default anchor behavior
-                                                    scrollToSection(sectionIndex, subIndex); // Call custom scroll function
-                                                }}
-                                                className="text-blue-300 hover:text-blue-500"
-                                            >
-                                                {subsection.title}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </li>
-                    );
-                })}
-            </ul>
-        </div>
-    );
-}
-
-const Section = ({ id, title, content, subsections, extraContent, depth = 0 }) => {
-    const titleClass = depth === 0
-        ? "text-4xl font-bold p-4 border-b border-gray-400" // Main sections (depth 0)
-        : depth === 1
-        ? "text-3xl font-bold p-4 border-b border-gray-400"
-        : depth === 2
-        ? "text-2xl font-bold p-4 border-b border-gray-400"
-        : "text-xl font-bold p-4 border-b border-gray-400"; // More nested sections
-
-    console.log("title: ", title, " titleclass: ", titleClass);
-
-    return (
-        <div className="py-4" id={id}>
-            <h2 className={titleClass}>{title}</h2>
-            <div>{content}</div>
-            {/* Render subsections if they exist */}
-            {subsections && subsections.length > 0 && (
-                <div className="pl-6">
-                    {subsections.map((subsection, index) => (
-                        <Section
-                            key={index}
-                            id={`${id}-subsection${index}`}
-                            title={subsection.title}
-                            content={subsection.content}
-                            subsections={subsection.subsections}
-                            extraContent={subsection.extraContent}
-                            depth={depth + 1}
-                        />
-                    ))}
-                </div>
-            )}
-            {/* Render extra content after subsections */}
-            {extraContent && <div className="mt-4">{extraContent}</div>}
-        </div>
-    );
-};
-
-const ContentWrapper = ({ sections }) => {
-    return (
-        <div className="flex">
-            <EARLSideBar sections={sections} />
-
-            {/* Main Content */}
-            <div className="ml-64 p-8 flex-1">
-                {sections.map((section, index) => (
-                    <Section
-                        key={index}
-                        id={`section${index}`}
-                        title={section.title}
-                        content={section.content}
-                        subsections={section.subsections}
-                        extraContent={section.extraContent}
-                    />
-                ))}
-            </div>
-        </div>
-    );
-};
-
 function Documentation() {
     const mainColors = [
         "bg-gradient-to-tr",
@@ -1952,45 +1835,13 @@ function Documentation() {
 
     const mainClassName = [...mainColors, ...mainSize, ...mainLoc].join(" ");
 
-    // State to manage button visibility
-    const [isVisible, setIsVisible] = useState(false);
-
-    const handleScroll = () => {
-        if (window.scrollY > 300) {
-            setIsVisible(true);
-        } else {
-            setIsVisible(false);
-        }
-    };
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
-
     return (
         <div className={mainClassName}>
             <EARLNavbar selected={"documentation"} />
             {/* add padding above */}
             <div className="pt-16" />
-            <ContentWrapper sections={sections} />
-
-            {/* Scroll to Top Button */}
-            {isVisible && (
-                <button
-                    onClick={scrollToTop}
-                    className="fixed bottom-4 right-4 bg-white bg-opacity-30 backdrop-blur-md border border-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-opacity-40 transition-all"
-                    aria-label="Scroll to top"
-                >
-                    <FontAwesomeIcon icon={faChevronUp} />
-                </button>
-            )}
+            <ContentWrapper sections={sections} sideBarTitle={"Documentation"} />
+            <ScrollToTopButton />
         </div>
     );
 }
