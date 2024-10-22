@@ -1,3 +1,4 @@
+import React from "react";
 import EARLLegend from "../components/EARLLegend";
 import EARLNavbar from "../components/EARLNavbar";
 import earlLogo from "../assets/earl-logo.jpg";

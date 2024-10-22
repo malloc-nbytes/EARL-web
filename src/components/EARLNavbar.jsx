@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import earlLogo from '../assets/earl-logo.jpg';
 
 function EARLNavbar({ selected }) {
@@ -7,11 +8,7 @@ function EARLNavbar({ selected }) {
 
     const handleScroll = () => {
         const currentScrollY = window.scrollY;
-        if (currentScrollY > lastScrollY) {
-            setIsVisible(false); // Scrolling down
-        } else {
-            setIsVisible(true); // Scrolling up
-        }
+        setIsVisible(currentScrollY <= lastScrollY); // Show if scrolling up
         setLastScrollY(currentScrollY);
     };
 
@@ -27,64 +24,46 @@ function EARLNavbar({ selected }) {
             <nav className="max-w-screen-xl mx-auto flex-grow">
                 <ul className="flex justify-center space-x-6">
                     <li>
-                        <a
-                            href="/EARL-web/home"
-                            className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'home' ? 'underline' : ''}`}
-                        >
+                        <Link to="/home" className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'home' ? 'underline' : ''}`}>
                             Home
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a
-                            href="/EARL-web/about"
-                            className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'about' ? 'underline' : ''}`}
-                        >
+                        <Link to="/about" className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'about' ? 'underline' : ''}`}>
                             About
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a
-                            href="/EARL-web/documentation"
-                            className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'documentation' ? 'underline' : ''}`}
-                        >
+                        <Link to="/documentation" className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'documentation' ? 'underline' : ''}`}>
                             Documentation
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a
-                            href="/EARL-web/examples"
-                            className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'examples' ? 'underline' : ''}`}
-                        >
+                        <Link to="/examples" className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'examples' ? 'underline' : ''}`}>
                             Examples
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a
-                            href="/EARL-web/contact"
-                            className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'contact' ? 'underline' : ''}`}
-                        >
+                        <Link to="/contact" className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'contact' ? 'underline' : ''}`}>
                             Contact
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a
-                            href="/EARL-web/source"
-                            className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'source' ? 'underline' : ''}`}
-                        >
+                        <Link to="/source" className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'source' ? 'underline' : ''}`}>
                             Source
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </nav>
             {/* Logo */}
             <div>
-                <a href="/EARL-web/home">
+                <Link to="/home">
                     <img
                         src={earlLogo}
                         alt="EARL Logo"
                         className="w-12 h-12 rounded-full object-cover border-4 border-blue-400"
                     />
-                </a>
+                </Link>
             </div>
         </header>
     );
