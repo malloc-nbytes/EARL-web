@@ -8,6 +8,7 @@ import EARLInfoIndent from "../components/EARLInfoIndent";
 import EARLInfoSpace from "../components/EARLInfoSpace";
 import EARLCodeSnippet from "../components/EARLCodeSnippet";
 import EARLTable from "../components/EARLTable";
+import Footer from "../components/Footer";
 import { yourFirstProgramSrc, yourFirstProgramOutput } from "../code-snippets/DocumentationYourFirstProgram";
 import { typingExampleSrc } from "../code-snippets/TypingExample";
 import { replProgrammingExample1, replProgrammingExample2, replProgrammingExample3, replProgrammingExample4 } from "../code-snippets/ReplProgramming";
@@ -1842,6 +1843,7 @@ function Documentation() {
             <div className="pt-16" />
             <ContentWrapper sections={sections} sideBarTitle={"Documentation"} />
             <ScrollToTopButton />
+            <Footer />
         </div>
     );
 }

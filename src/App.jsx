@@ -11,6 +11,10 @@ import Examples from "./pages/Examples";
 import Home from "./pages/Home";
 import InvalidPage from "./pages/InvalidPage";
 
+function Doxygen() {
+    window.location.href = "./doxygen/index.html";
+}
+
 function App() {
     return (
         <>
@@ -22,6 +26,7 @@ function App() {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/documentation" element={<Documentation />} />
                     <Route path="/examples" element={<Examples />} />
+                    <Route path="/source" element={<Doxygen />} />
                     <Route path="*" element={<InvalidPage />} />
                 </Routes>
             </BrowserRouter>

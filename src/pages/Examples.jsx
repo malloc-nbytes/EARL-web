@@ -6,6 +6,7 @@ import EARLInfo from "../components/EARLInfo";
 import EARLInfoIndent from "../components/EARLInfoIndent";
 import EARLInfoSpace from "../components/EARLInfoSpace";
 import EARLCodeSnippet from "../components/EARLCodeSnippet";
+import Footer from "../components/Footer";
 import { lsLahExample, helloWorldExample, twosumExample } from "../code-snippets/CodeExamples";
 
 const helloWorldSection = {
@@ -99,6 +100,7 @@ function Examples() {
             <div className="pt-16" />
             <ContentWrapper sections={sections} sideBarTitle={"Examples"} />
             <ScrollToTopButton />
+            <Footer />
         </BackGround>
     );
 }

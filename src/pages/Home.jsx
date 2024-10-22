@@ -1,6 +1,7 @@
 import EARLLegend from "../components/EARLLegend";
 import EARLNavbar from "../components/EARLNavbar";
-import earlLogo from '../assets/earl-logo.jpg';
+import earlLogo from "../assets/earl-logo.jpg";
+import Footer from "../components/Footer";
 
 function Home() {
     const mainColors = [
@@ -31,6 +32,7 @@ function Home() {
             </div>
             <EARLNavbar selected={"home"} />
             <EARLLegend />
+            <Footer />
         </main>
     );
 }
