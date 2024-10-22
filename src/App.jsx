@@ -18,17 +18,15 @@ import InvalidPage from "./pages/InvalidPage";
 
 function App() {
     return (
-        <BrowserRouter basename="/EARL-web">
-            <Routes>
-                <Route index element={<Home />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/documentation" element={<Documentation />} />
-                <Route path="/examples" element={<Examples />} />
-                <Route path="*" element={<InvalidPage />} />
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route index element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/documentation" element={<Documentation />} />
+            <Route path="/examples" element={<Examples />} />
+            <Route path="*" element={<InvalidPage />} />
+        </Routes>
     );
 }
 
