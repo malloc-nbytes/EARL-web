@@ -1,3 +1,4 @@
+import BackGround from "../components/BackGround";
 import Footer from "../components/Footer";
 import ContentWrapper from "../components/ContentWrapper";
 import ScrollToTopButton from "../components/ScrollToTopButton";
