@@ -28,7 +28,7 @@ function EARLNavbar({ selected }) {
                 <ul className="flex justify-center space-x-6">
                     <li>
                         <a
-                            href="/home"
+                            href="/EARL-web/home"
                             className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'home' ? 'underline' : ''}`}
                         >
                             Home
@@ -36,7 +36,7 @@ function EARLNavbar({ selected }) {
                     </li>
                     <li>
                         <a
-                            href="/about"
+                            href="/EARL-web/about"
                             className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'about' ? 'underline' : ''}`}
                         >
                             About
@@ -44,7 +44,7 @@ function EARLNavbar({ selected }) {
                     </li>
                     <li>
                         <a
-                            href="/documentation"
+                            href="/EARL-web/documentation"
                             className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'documentation' ? 'underline' : ''}`}
                         >
                             Documentation
@@ -52,7 +52,7 @@ function EARLNavbar({ selected }) {
                     </li>
                     <li>
                         <a
-                            href="/examples"
+                            href="/EARL-web/examples"
                             className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'examples' ? 'underline' : ''}`}
                         >
                             Examples
@@ -60,7 +60,7 @@ function EARLNavbar({ selected }) {
                     </li>
                     <li>
                         <a
-                            href="/contact"
+                            href="/EARL-web/contact"
                             className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'contact' ? 'underline' : ''}`}
                         >
                             Contact
@@ -68,7 +68,7 @@ function EARLNavbar({ selected }) {
                     </li>
                     <li>
                         <a
-                            href="/source"
+                            href="/EARL-web/source"
                             className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'source' ? 'underline' : ''}`}
                         >
                             Source
@@ -78,7 +78,7 @@ function EARLNavbar({ selected }) {
             </nav>
             {/* Logo */}
             <div>
-                <a href="/home">
+                <a href="/EARL-web/home">
                     <img
                         src={earlLogo}
                         alt="EARL Logo"
