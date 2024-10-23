@@ -53,7 +53,11 @@ function EARLInfo({ text }) {
     };
 
     const parseTextWithCodeAndBold = (text) => {
-        const escapedText = escapeHTML(text);
+        // Handle escaping first
+        const escapedText = escapeHTML(text)
+            .replace(/\\`/g, '%%ESCAPED_CODE%%') // Escape ` character
+            .replace(/\\\*/g, '%%ESCAPED_BOLD%%'); // Escape * character
+
         const escapedBoldText = escapedText.replace(/\/\*/g, '%%BOLD%%');
         const escapedCodeText = escapedBoldText.replace(/\/`/g, '%%CODE%%');
 
@@ -62,6 +66,11 @@ function EARLInfo({ text }) {
 
         let parsedText = escapedCodeText;
 
+        // Replace escaped characters first
+        parsedText = parsedText.replace(/%%ESCAPED_CODE%%/g, '`');
+        parsedText = parsedText.replace(/%%ESCAPED_BOLD%%/g, '*');
+
+        // Apply code and bold replacements
         parsedText = parsedText.replace(codeRegex, (match, p1) => {
             return `<code class="bg-slate-800 text-white rounded-sm px-1">${p1}</code>`;
         });

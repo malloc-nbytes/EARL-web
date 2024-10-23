@@ -122,6 +122,7 @@ import {
     timeSeconds,
 } from "../code-snippets/TimeMemberIntrinsics";
 import { stdLibModules } from "../code-snippets/StdLibModules";
+import { MultilineBashExample1Src, MultilineBashExample2Src } from "../code-snippets/MultilineBash";
 
 const compilingEARLBash = `cd EARL
 mkdir build
@@ -570,6 +571,39 @@ const grammarAndFeatures = [
                 content: (
                     <>
                         <EARLCodeSnippet code={bashCommandsExample1Src} language={'rust'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Multiline Bash Literals",
+        content: (
+            <>
+                <EARLInfo text='You can also do multiline `BASH` literals. However, getting output from it is currently not possible.' />
+                <EARLInfo text='Having this means that any `BASH` files are also EARL compatible as long as you put the required tildes and semicolon.' />
+                <EARLInfo text='While you could just use the regular `BASH` literal and wait until you close off the quote, this provides' />
+                <EARLInfo text='a cleaner syntax.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={'```'} language={'bash'} />
+                        <EARLInfo text='`BASH`' />
+                        <EARLCodeSnippet code={'```'} language={'bash'} />
+                        <EARLInfo text='`;`' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={MultilineBashExample1Src} language={'bash'} />
+                        <EARLCodeSnippet code={MultilineBashExample2Src} language={'bash'} />
                     </>
                 ),
             },
