@@ -26,3 +26,4 @@ export const sleepDef            = "sleep(milli: int) -> unit";
 export const envDef              = "env(variable: str) -> str";
 export const initSeedDef         = "init_seed(seed: int) -> unit";
 export const randomDef           = "random() -> int";
+export const observeDef          = "observe(var: <identifier>, callback: FunctionRef(any) -> unit | closure<any> -> unit) -> unit";

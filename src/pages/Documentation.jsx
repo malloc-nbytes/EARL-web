@@ -67,6 +67,7 @@ import {
     envDef,
     initSeedDef,
     randomDef,
+    observeDef,
 } from "../code-snippets/Intrinsics";
 import {
     listAppend,
@@ -1506,6 +1507,19 @@ const intrinsicsSections = [
             <>
                 <EARLCodeSnippet code={randomDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Gives a random number based off of the internal seed from `init_seed()`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "observe()",
+        content: (
+            <>
+                <EARLCodeSnippet code={observeDef} language={'rust'} />
+                <EARLInfo text='Sets an event listener on the variable `var` that will trigger the function `callback` whenever `var` is mutated.' />
+                <EARLInfo text='The parameter that `callback` has will have the variable that is being observed "forwarded" to it.' />
+                <EARLInfoSpace>
+                    <EARLInfo text='*Note*: `callback` is expected to take only 1 parameter.' />
+                </EARLInfoSpace>
             </>
         ),
     },
