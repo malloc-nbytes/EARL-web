@@ -376,6 +376,8 @@ const grammarAndFeatures = [
                 <EARLInfoIndent>
                     <EARLInfo text='`__FILE__` -> Get the current filename as a `str`' />
                     <EARLInfo text='`__FUNC__` -> Get the current function name as a `str`' />
+                    <EARLInfo text='`__OS__` -> Get the current operating system as a `str`' />
+                    <EARLInfo text='`__MODULE__` -> Get the current module name as a `str`' />
                 </EARLInfoIndent>
             </>
         ),
