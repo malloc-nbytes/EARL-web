@@ -366,7 +366,7 @@ export const stdLibModules = [
                         <EARLInfoIndent>
                             <EARLInfo text='Creates a new matrix with the initial dataset `init`' />
                             <EARLInfo text='with `rows` rows and `cols` columns.' />
-                        </EARLInfoIndent>`
+                        </EARLInfoIndent>
                     </>
                 ),
                 subsections: [
@@ -554,7 +554,7 @@ export const stdLibModules = [
                         <EARLCodeSnippet code={`T[init: : list<x0: any, x1: type(x0), ..., xN: type(x0)>]`} language={'armasm'} />
                         <EARLInfoIndent>
                             <EARLInfo text='Creates a new Set container with the initializer list `init`.' />
-                        </EARLInfoIndent>`
+                        </EARLInfoIndent>
                     </>
                 ),
                 subsections: [
@@ -626,6 +626,88 @@ export const stdLibModules = [
                         <EARLInfoIndent>
                             <EARLInfo text='Returns 0 on first call, then 0+1 on second, then 0+1+1 on third etc.' />
                         </EARLInfoIndent>
+                    </>
+                ),
+            },
+            {
+                title: "Class List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Time",
+        content: (
+            <>
+                <EARLInfo text='Import: `"std/time.earl"`' />
+                <EARLInfo text='Module: `Time`' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Variable List",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={`ONE_SECOND: @const int`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text="The number of microseconds for one second." />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`HALF_SECOND: @const int`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text="The number of microseconds for half a second." />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`QUARTER_SECOND: @const int`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text="The number of microseconds for a quarter of a second." />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`FIVE_SECONDS: @const int`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text="The number of microseconds for five seconds." />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`TEN_SECONDS: @const int`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text="The number of microseconds for ten seconds." />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`THIRTY_SECONDS: @const int`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text="The number of microseconds for thirty seconds." />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`ONE_MINUTE: @const int`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text="The number of microseconds for one minute." />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`TEN_MINUTES: @const int`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text="The number of microseconds for ten minutes." />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`ONE_HOUR: @const int`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text="The number of microseconds for one hour." />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`ONE_DAY: @const int`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text="The number of microseconds for one day." />
+                        </EARLInfoIndent>
+                    </>
+                ),
+            },
+            {
+                title: "Enum List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Function List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
                     </>
                 ),
             },
