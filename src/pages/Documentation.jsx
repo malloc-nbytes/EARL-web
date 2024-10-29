@@ -1469,7 +1469,7 @@ const intrinsicsSections = [
         content: (
             <>
                 <EARLCodeSnippet code={sleepDef} language={'rust'} />
-                <EARLInfoIndent><EARLInfo text='Sleep for `milli` milliseconds.' /></EARLInfoIndent>
+                <EARLInfoIndent><EARLInfo text='Sleep for `nanos` nanoseconds.' /></EARLInfoIndent>
             </>
         ),
     },
