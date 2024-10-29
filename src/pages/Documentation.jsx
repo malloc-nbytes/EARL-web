@@ -124,6 +124,13 @@ import {
 } from "../code-snippets/TimeMemberIntrinsics";
 import { stdLibModules } from "../code-snippets/StdLibModules";
 import { MultilineBashExample1Src, MultilineBashExample2Src } from "../code-snippets/MultilineBash";
+import {
+    useExample1Src,
+    useExample2Src,
+    useExample3Src,
+    useExample4Src,
+} from "../code-snippets/Use";
+import { execExampleSrc1 } from "../code-snippets/Exec";
 
 const compilingEARLBash = `cd EARL
 mkdir build
@@ -607,6 +614,68 @@ const grammarAndFeatures = [
                     <>
                         <EARLCodeSnippet code={MultilineBashExample1Src} language={'bash'} />
                         <EARLCodeSnippet code={MultilineBashExample2Src} language={'bash'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Use",
+        content: (
+            <>
+                <EARLInfo text='`use` statements are similar to `import` statements (see section *Imports*), but have different rules:' />
+                <EARLInfoIndent>
+                    <EARLInfo text='1. They are used to import files such as `.py`, `.sh`, etc.' />
+                    <EARLInfo text='2. If there *is no* `as` alias, it will immediately evaluate that file.' />
+                    <EARLInfo text='3. If there *is* an `as` alias, it will not evaluate it, rather, it will wait until you call `exec` on it (see section *Exec*).' />
+                </EARLInfoIndent>
+                <EARLInfo text='*Note*: If you want to import an EARL file, even though this would work, you should use *import* instead (see section *Imports*).' />
+                <EARLInfo text='*Note*: Make sure that there is a *Shebang* at the top of the file being used i.e., `#!/bin/python3`, `#!/bin/bash` etc.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`use` <expr>`;` *(as <identifier>)' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={useExample1Src} language={'bash'} />
+                        <EARLCodeSnippet code={useExample2Src} language={'bash'} />
+                        <EARLCodeSnippet code={useExample3Src} language={'bash'} />
+                        <EARLCodeSnippet code={useExample4Src} language={'bash'} />
+                    </>
+                ),
+            }
+        ],
+    },
+    {
+        title: "Exec",
+        content: (
+            <>
+                <EARLInfo text='`exec` statements allow you to call an external non-EARL script when using a `use` statement with an alias.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`exec` <identifier>`;`' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={execExampleSrc1} language={'bash'} />
                     </>
                 ),
             },
