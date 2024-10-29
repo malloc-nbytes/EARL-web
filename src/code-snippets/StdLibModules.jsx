@@ -755,6 +755,10 @@ export const stdLibModules = [
                             <EARLInfo text='List all items at the path `path` and return a list of' />
                             <EARLInfo text='all elements it contains.' />
                         </EARLInfoIndent>
+                        <EARLCodeSnippet code={`isdir(path: str) -> bool`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Return `true` if `path` is a directory or `false` if otherwise.' />
+                        </EARLInfoIndent>
                         <EARLCodeSnippet code={`cd(path: str) -> unit`} language={'armasm'} />
                         <EARLInfoIndent>
                             <EARLInfo text='Change the current working directory to `path`.' />
