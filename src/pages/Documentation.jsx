@@ -131,6 +131,7 @@ import {
     useExample4Src,
 } from "../code-snippets/Use";
 import { execExampleSrc1 } from "../code-snippets/Exec";
+import { caseExample1Src, caseExample2Src } from "../code-snippets/Case";
 
 const compilingEARLBash = `cd EARL
 mkdir build
@@ -614,6 +615,49 @@ const grammarAndFeatures = [
                     <>
                         <EARLCodeSnippet code={MultilineBashExample1Src} language={'bash'} />
                         <EARLCodeSnippet code={MultilineBashExample2Src} language={'bash'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Case",
+        content: (
+            <>
+                <EARLInfoSpace>
+                    <EARLInfo text='A `case` *is an expression, not a statement*. It is equivalent to a ternary expression.' />
+                    <EARLInfo text='It consists of any number (> 0) of cases. The *first* one that matches will be used.' />
+                    <EARLInfo text='If no cases match, the base case will be used.' />
+                </EARLInfoSpace>
+                <EARLInfoSpace>
+                    <EARLInfo text='Also, the types used in the *left hand side* of each case does not' />
+                    <EARLInfo text='need to match.' />
+                </EARLInfoSpace>
+                <EARLInfo text='*Note*: A base case is strongly recommended. If one is not used, it will throw' />
+                <EARLInfo text='a warning and will return a `unit` value.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`case` <expr> `of` { *(<case branch>) };' />
+                        <EARLInfoIndent>
+                            <EARLInfo text='where `case branch` defined as' />
+                            <EARLInfoIndent>
+                                <EARLInfo text='<expr> `=` <expr>`;`' />
+                            </EARLInfoIndent>
+                        </EARLInfoIndent>
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={caseExample1Src} language={'bash'} />
+                        <EARLCodeSnippet code={caseExample2Src} language={'bash'} />
                     </>
                 ),
             },
