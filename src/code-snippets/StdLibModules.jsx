@@ -3,6 +3,115 @@ import EARLInfoIndent from "../components/EARLInfoIndent";
 import EARLCodeSnippet from "../components/EARLCodeSnippet";
 export const stdLibModules = [
     {
+        title: "Colors",
+        content: (
+            <>
+                <EARLInfo text='Import: `"std/colors.earl"`' />
+                <EARLInfo text='Module: `Colors`' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Variable List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Enum List",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={`Fd {
+    Black -> str,
+    Red -> str,
+    Green -> str,
+    Yellow -> str,
+    Blue -> str,
+    Magenta -> str,
+    Cyan -> str,
+    White -> str,
+    Bright_Black -> str,
+    Bright_Red -> str,
+    Bright_Green -> str,
+    Bright_Yellow -> str,
+    Bright_Blue -> str,
+    Bright_Magenta -> str,
+    Bright_Cyan -> str,
+    Bright_White -> str
+}`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='The different (T)ext (f)orground (c)olors.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`Fd {
+    Black -> str,
+    Red -> str,
+    Green -> str,
+    Yellow -> str,
+    Blue -> str,
+    Magenta -> str,
+    Cyan -> str,
+    White -> str,
+    Bright_Black -> str,
+    Bright_Red -> str,
+    Bright_Green -> str,
+    Bright_Yellow -> str,
+    Bright_Blue -> str,
+    Bright_Magenta -> str,
+    Bright_Cyan -> str,
+    Bright_White -> str
+}`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='The different (T)ext (b)ackground (c)olors.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`Fd {
+    Underline -> str,
+    Bold -> str,
+    Italic -> str,
+    Invert -> str,
+    Strikethrough -> str,
+    Reset -> str
+}`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='The different (T)ext (e)ffects.' />
+                        </EARLInfoIndent>
+                    </>
+                ),
+            },
+            {
+                title: "Function List",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={`show_fg_colors() -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Show all text forground colors printed to `stdout`.' />
+                            <EARLInfo text='This does reset all current color and effect terminal codes.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`show_bg_colors() -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Show all text background colors printed to `stdout`.' />
+                            <EARLInfo text='This does reset all current color and effect terminal codes.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`show_text_effects() -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Show all text effects colors printed to `stdout`.' />
+                            <EARLInfo text='This does reset all current color and effect terminal codes.' />
+                        </EARLInfoIndent>
+                    </>
+                ),
+            },
+            {
+                title: "Class List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
         title: "IO",
         content: (
             <>
