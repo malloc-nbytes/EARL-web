@@ -23,7 +23,7 @@ export const stdLibModules = [
                 title: "Enum List",
                 content: (
                     <>
-                        <EARLCodeSnippet code={`Fd {
+                        <EARLCodeSnippet code={`Tfc {
     Black -> str,
     Red -> str,
     Green -> str,
@@ -44,7 +44,7 @@ export const stdLibModules = [
                         <EARLInfoIndent>
                             <EARLInfo text='The different (T)ext (f)orground (c)olors.' />
                         </EARLInfoIndent>
-                        <EARLCodeSnippet code={`Fd {
+                        <EARLCodeSnippet code={`Tbc {
     Black -> str,
     Red -> str,
     Green -> str,
@@ -65,7 +65,7 @@ export const stdLibModules = [
                         <EARLInfoIndent>
                             <EARLInfo text='The different (T)ext (b)ackground (c)olors.' />
                         </EARLInfoIndent>
-                        <EARLCodeSnippet code={`Fd {
+                        <EARLCodeSnippet code={`Te {
     Underline -> str,
     Bold -> str,
     Italic -> str,
