@@ -42,6 +42,7 @@ import {
     printDef,
     printlnDef,
     helpDef,
+    copyDef,
     sinDef,
     cosDef,
     setFlagDef,
@@ -1387,6 +1388,15 @@ const intrinsicsSections = [
             <>
                 <EARLCodeSnippet code={helpDef} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Will return a `str` of all doc comments (see *Documentation Comments*) associated with the identifer `id`.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "copy()",
+        content: (
+            <>
+                <EARLCodeSnippet code={copyDef} language={'rust'} />
+                <EARLInfoIndent><EARLInfo text='Will copy the the value from the memory location pointed to by `value`.'/></EARLInfoIndent>
             </>
         ),
     },

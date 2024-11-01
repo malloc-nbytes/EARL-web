@@ -1,6 +1,7 @@
 export const printDef            = "print(arg1: any, arg2: any, ..., argN: any) -> unit";
 export const printlnDef          = "println(arg1: any, arg2: any, ..., argN: any) -> unit";
 export const helpDef             = "help(id: <identifier>) -> str";
+export const copyDef             = "copy(value: any) -> any";
 export const sinDef              = "sin(arg: real) -> float";
 export const cosDef              = "cos(arg: real) -> float";
 export const setFlagDef          = "set_flag(flag: str) -> unit";
