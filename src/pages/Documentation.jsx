@@ -194,6 +194,9 @@ const keywordsData = [
     { keyword: "true", section: "N/A" },
     { keyword: "false", section: "N/A" },
     { keyword: "none", section: "N/A" },
+    { keyword: "use", section: "Use" },
+    { keyword: "exec", section: "Exec" },
+    { keyword: "case", section: "Case" },
 ];
 
 const keywordsColumns = ["Keyword", "Section"];
