@@ -1,4 +1,4 @@
-export const enumerationsExample1Src = `import "external-enum.earl" almost
+export const enumerationsExample1Src = `import "external-enum.rl" almost
 
 @pub
 enum MyPubEnum {
@@ -12,7 +12,7 @@ enum MyPubEnum {
 
 let my_enum_el = MyPubEnum.El2;
 println(my_enum_el, ' ', MyPubEnum.El5); # prints \`2 10\`
-println(ExternalEnum::MyEnum.Item3); # prints the enum element from "external-enum.earl"`;
+println(ExternalEnum::MyEnum.Item3); # prints the enum element from "external-enum.rl"`;
 
 export const enumerationsExample2Src = `let x = [1,2,3];
 

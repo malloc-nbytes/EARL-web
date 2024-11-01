@@ -9,6 +9,6 @@ fn sum(a, b) {
 
 export const modulesExample2Src = `module Main
 
-import "my-math.earl";
+import "my-math.rl";
 
 let s = MyMath::sum(1, 2);`;
