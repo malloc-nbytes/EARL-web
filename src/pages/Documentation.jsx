@@ -105,6 +105,7 @@ import {
     optionIsNone,
     optionIsSome,
     optionUnwrap,
+    optionUnwrapOr,
 } from "../code-snippets/OptionMemberIntrinsics";
 import {
     fileClose,
@@ -1765,6 +1766,9 @@ const memberIntrinsicsSections = [
 
                 <EARLCodeSnippet code={optionUnwrap} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the inner value of the `option` datatype. If the `option` is `none`, a panic will occur.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={optionUnwrapOr} language={'rust'} />
+                <EARLInfoIndent><EARLInfo text='Returns the inner value of the `option` datatype. If the `option` is `none`, it will return the `other_value` that is passed to it.' /></EARLInfoIndent>
             </>
         ),
     },
