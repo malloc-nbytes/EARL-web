@@ -323,7 +323,7 @@ export const stdLibModules = [
                 title: "Function List",
                 content: (
                     <>
-                        <EARLCodeSnippet code={`program_exists(progname: str) -> str`} language={'armasm'} />
+                        <EARLCodeSnippet code={`program_exists(progname: str) -> bool`} language={'armasm'} />
                         <EARLInfoIndent>
                             <EARLInfo text='Returns `true` if `progname` exists as a program on the' />
                             <EARLInfo text='machine or `false` if otherwise.' />

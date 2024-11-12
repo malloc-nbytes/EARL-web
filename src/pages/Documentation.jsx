@@ -15,6 +15,7 @@ import { replProgrammingExample1, replProgrammingExample2, replProgrammingExampl
 import { variableDeclarationsExample1 } from "../code-snippets/VariableDeclarations";
 import { mutationExample1 } from "../code-snippets/Mutation";
 import { conditionalsExample1 } from "../code-snippets/Conditionals";
+import { returnsExample1Src, returnsExample2Src, returnsExample3Src, returnsExample4Src, returnsExample5Src } from "../code-snippets/Returns";
 import { patternMatchingExample1Src, patternMatchingExample1Output, patternMatchingExample2Src, patternMatchingExample2Output } from "../code-snippets/PatternMatching";
 import { bashCommandsExample1Src } from "../code-snippets/BashCommands";
 import { whileLoopsExample1Src } from "../code-snippets/WhileLoops";
@@ -507,6 +508,41 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: (
                     <EARLCodeSnippet code={conditionalsExample1} language={"rust"} />
+                ),
+            },
+        ],
+    },
+    {
+        title: "Returns",
+        content: (
+            <>
+                <EARLInfo text='There are two ways that you can `return` in EARL:' />
+                <EARLInfoIndent>
+                    <EARLInfo text='1. use the `return` keyword' />
+                    <EARLInfo text='2. just type an expression that evaluates to a non-unit type.' />
+                </EARLInfoIndent>
+                <EARLInfo text='If you need to discard an expression (like a function returning something), you can bind it to a `unit` binding i.e.,' />
+                <EARLInfoIndent>
+                    <EARLCodeSnippet code={'let _ = function_that_returns_something();'} language={'rust'} />
+                </EARLInfoIndent>
+                <EARLInfo text='*Note*: This functionality can be disabled by using the `--disable-implicit-returns` flag.' />
+                <EARLInfo text='*Note*: You cannot disable this in the REPL.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={returnsExample1Src} language={'rust'} />
+                        <EARLCodeSnippet code={returnsExample2Src} language={'rust'} />
+                        <EARLInfo text='Below shows how you can discard a value and not return from a function:' />
+                        <EARLCodeSnippet code={returnsExample5Src} language={'rust'} />
+                        <EARLInfo text='You can also use this inside of closures:' />
+                        <EARLCodeSnippet code={returnsExample4Src} language={'rust'} />
+                        <EARLInfo text='*Note*: This does not apply to `unit` expressions.' />
+                        <EARLCodeSnippet code={returnsExample3Src} language={'rust'} />
+                    </>
                 ),
             },
         ],
