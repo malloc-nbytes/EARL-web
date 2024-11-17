@@ -22,7 +22,7 @@ import { whileLoopsExample1Src } from "../code-snippets/WhileLoops";
 import { forLoopsExample1Src } from "../code-snippets/ForLoops";
 import { foreachLoopsExample1Src } from "../code-snippets/ForeachLoops";
 import { foreverLoopsExample1Src } from "../code-snippets/ForeverLoops";
-import { whenExampleSrc1, whenExampleSrc2, whenExampleSrc3, whenExampleSrc4 } from "../code-snippets/When";
+import { withExampleSrc1, withExampleSrc2, withExampleSrc3, withExampleSrc4 } from "../code-snippets/With";
 import { functionDefinitionsExample1Src } from "../code-snippets/FunctionDefinitions";
 import { importsExample1Src } from "../code-snippets/Imports";
 import { modulesExample1Src, modulesExample2Src } from "../code-snippets/Modules";
@@ -179,7 +179,7 @@ const keywordsData = [
     { keyword: "loop", section: "Forever Loops" },
     { keyword: "in", section: "For loops, Foreach Loops" },
     { keyword: "to", section: "For loops" },
-    { keyword: "when", section: "When" },
+    { keyword: "with", section: "With" },
     { keyword: "break", section: "For loops, While Loops, Foreach Loops, Forever Loops" },
     { keyword: "continue", section: "For loops, While Loops, Foreach Loops, Forever Loops" },
     { keyword: "import", section: "Imports" },
@@ -889,7 +889,7 @@ const grammarAndFeatures = [
         ],
     },
     {
-        title: "When",
+        title: "With",
         content: (
             <>
                 <EARLInfo text='These statements allow for temporary scoped variables.' />
@@ -901,7 +901,7 @@ const grammarAndFeatures = [
                 title: "Grammar",
                 content: (
                     <>
-                        <EARLInfo text='`when` *(<identifier> `=` <expr>,) `in`' />
+                        <EARLInfo text='`with` *(<identifier> `=` <expr>,) `in`' />
                         <EARLInfoIndent>
                         <EARLInfo text='*Note*: The comma is only needed if multiple variables are being declared.' />
                         </EARLInfoIndent>
@@ -912,10 +912,10 @@ const grammarAndFeatures = [
                 title: "Examples",
                 content: (
                     <>
-                        <EARLCodeSnippet code={whenExampleSrc1} language={'rust'} />
-                        <EARLCodeSnippet code={whenExampleSrc2} language={'rust'} />
-                        <EARLCodeSnippet code={whenExampleSrc3} language={'rust'} />
-                        <EARLCodeSnippet code={whenExampleSrc4} language={'rust'} />
+                        <EARLCodeSnippet code={withExampleSrc1} language={'rust'} />
+                        <EARLCodeSnippet code={withExampleSrc2} language={'rust'} />
+                        <EARLCodeSnippet code={withExampleSrc3} language={'rust'} />
+                        <EARLCodeSnippet code={withExampleSrc4} language={'rust'} />
                     </>
                 ),
             },
