@@ -22,6 +22,7 @@ import { whileLoopsExample1Src } from "../code-snippets/WhileLoops";
 import { forLoopsExample1Src } from "../code-snippets/ForLoops";
 import { foreachLoopsExample1Src } from "../code-snippets/ForeachLoops";
 import { foreverLoopsExample1Src } from "../code-snippets/ForeverLoops";
+import { whenExampleSrc1, whenExampleSrc2, whenExampleSrc3, whenExampleSrc4 } from "../code-snippets/When";
 import { functionDefinitionsExample1Src } from "../code-snippets/FunctionDefinitions";
 import { importsExample1Src } from "../code-snippets/Imports";
 import { modulesExample1Src, modulesExample2Src } from "../code-snippets/Modules";
@@ -178,6 +179,7 @@ const keywordsData = [
     { keyword: "loop", section: "Forever Loops" },
     { keyword: "in", section: "For loops, Foreach Loops" },
     { keyword: "to", section: "For loops" },
+    { keyword: "when", section: "When" },
     { keyword: "break", section: "For loops, While Loops, Foreach Loops, Forever Loops" },
     { keyword: "continue", section: "For loops, While Loops, Foreach Loops, Forever Loops" },
     { keyword: "import", section: "Imports" },
@@ -883,6 +885,39 @@ const grammarAndFeatures = [
                         <EARLCodeSnippet code={foreverLoopsExample1Src} language={'rust'} />
                     </>
                 ],
+            },
+        ],
+    },
+    {
+        title: "When",
+        content: (
+            <>
+                <EARLInfo text='These statements allow for temporary scoped variables.' />
+                <EARLInfo text='The variables that are declared using this statement only live until the end *of the next statement*.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`when` *(<identifier> `=` <expr>,) `in`' />
+                        <EARLInfoIndent>
+                        <EARLInfo text='*Note*: The comma is only needed if multiple variables are being declared.' />
+                        </EARLInfoIndent>
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={whenExampleSrc1} language={'rust'} />
+                        <EARLCodeSnippet code={whenExampleSrc2} language={'rust'} />
+                        <EARLCodeSnippet code={whenExampleSrc3} language={'rust'} />
+                        <EARLCodeSnippet code={whenExampleSrc4} language={'rust'} />
+                    </>
+                ),
             },
         ],
     },
