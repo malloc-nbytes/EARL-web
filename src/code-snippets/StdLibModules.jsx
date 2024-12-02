@@ -85,11 +85,11 @@ export const stdLibModules = [
         ],
     },
     {
-        title: "Matrix",
+        title: "Dictionary",
         content: (
             <>
-                <EARLInfo text='Import: `"std/matrix.rl"`' />
-                <EARLInfo text='Module: `Matrix`' />
+                <EARLInfo text='Import: `"std/datatypes/dictionary.rl"`' />
+                <EARLInfo text='Module: `Dictionary`' />
             </>
         ),
         subsections: [
@@ -113,17 +113,18 @@ export const stdLibModules = [
                 title: "Function List",
                 content: (
                     <>
-                        <EARLCodeSnippet code={`identity() -> T`} language={'armasm'} />
+                        <EARLCodeSnippet code={`to_list(@const @ref d: dictionary) -> list<tuple>`} language={'armasm'} />
                         <EARLInfoIndent>
-                            <EARLInfo text='Creates the identity matrix.' />
+                            <EARLInfo text='Description' />
+                            <EARLInfo text='Takes the dictionary `d` and converts it' />
+                            <EARLInfo text='to a list of tuples.' />
                         </EARLInfoIndent>
-                        <EARLCodeSnippet code={`from1d(data: list<any>, rows: int, cols: int) -> T`} language={'armasm'} />
+                        <EARLCodeSnippet code={`of_list(@const @ref lst: : list<x0: any, x1: typeof(x0), x2: typeof(x0), ..., xN: typeof(x0)>) -> dictionary<typeof(lst[0])>`} language={'armasm'} />
                         <EARLInfoIndent>
-                            <EARLInfo text='Creates a `rows` x `cols` matrix from a 1d list.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`from2d(data: list<list<any>>) -> T`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Creates a matrix from a 2d list.' />
+                            <EARLInfo text='Takes a list where all values are the same type and' />
+                            <EARLInfo text='converts it into a dictionary of the number of times' />
+                            <EARLInfo text='some value appears in `lst`. Note: `lst` is expected' />
+                            <EARLInfo text='to have a length > 0.' />
                         </EARLInfoIndent>
                     </>
                 ),
@@ -132,30 +133,230 @@ export const stdLibModules = [
                 title: "Class List",
                 content: (
                     <>
-                        <EARLCodeSnippet code={`T[init: list<any>, rows: int, cols: int]`} language={'armasm'} />
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Char",
+        content: (
+            <>
+                <EARLInfo text='Import: `"std/datatypes/char.rl"`' />
+                <EARLInfo text='Module: `Char`' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Variable List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Enum List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Function List",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={`isalpha(c: char) -> bool`} language={'armasm'} />
                         <EARLInfoIndent>
-                            <EARLInfo text='Creates a new matrix with the initial dataset `init`' />
-                            <EARLInfo text='with `rows` rows and `cols` columns.' />
+                            <EARLInfo text='Takes the char `c` and returns a boolean of whether or not it is a an alpha character.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`isnum(c: char) -> bool`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Takes the char `c` and returns a boolean of whether or not' />
+                            <EARLInfo text='it is a digit.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`isalnum(c: char) -> bool`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Takes the char `c` and returns a boolean of whether or not it is a digit or an alpha character.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`tolower(c: char) -> char`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Takes the char `c` and returns a lowercase character version of the latin alphabet' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`toupper(c: char) -> char`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Takes the char `c` and returns a uppercase character version of the latin alphabet' />
                         </EARLInfoIndent>
                     </>
                 ),
-                subsections: [
-                    {
-                        title: "T Implements",
-                        content: (
-                            <>
-                        <EARLCodeSnippet code={`at(i: int, j: int) -> any`} language={'armasm'} />
+            },
+            {
+                title: "Class List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Str",
+        content: (
+            <>
+                <EARLInfo text='Import: `"std/datatypes/str.rl"`' />
+                <EARLInfo text='Module: `Str`' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Variable List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Enum List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Function List",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={`to_list(s: @ref str) -> list`} language={'armasm'} />
                         <EARLInfoIndent>
-                            <EARLInfo text='Returns the element at [ `i` ][ `j` ] in the matrix.' />
+                            <EARLInfo text='Convert the string `s` to a `list`.' />
                         </EARLInfoIndent>
-                        <EARLCodeSnippet code={`show() -> unit`} language={'armasm'} />
+                        <EARLCodeSnippet code={`find(s: @ref str, t: char) -> int`} language={'armasm'} />
                         <EARLInfoIndent>
-                            <EARLInfo text='Prints all elements in the matrix.' />
+                            <EARLInfo text='Returns the index of target `t` in a `some` value or `none` if not found.' />
                         </EARLInfoIndent>
-                            </>
-                        ),
-                    },
-                ],
+                        <EARLCodeSnippet code={`trim(s: @ref str) -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Trims all whitespace (spaces, tabs, newlines etc.) from `s` in-place.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`find_first_of(s: @const @ref str, t: char) -> option<int>`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Finds the first ocurrence of `t` in `s`.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`find_last_of(s: @const @ref str, t: char) -> option<int>`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Finds the last ocurrence of `t` in `s`.' />
+                        </EARLInfoIndent>
+                    </>
+                ),
+            },
+            {
+                title: "Class List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "List",
+        content: (
+            <>
+                <EARLInfo text='Import: `"std/datatypes/list.rl"`' />
+                <EARLInfo text='Module: `List`' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Variable List",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={`DEFAULT_INT_ASCEND_QUICKSORT: closure(int, int) -> bool`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text="The default comparison function for ascending sort." />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`DEFAULT_INT_DESCEND_QUICKSORT: closure(int, int) -> bool`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text="The default comparison function for descending sort." />
+                        </EARLInfoIndent>
+                    </>
+                ),
+            },
+            {
+                title: "Enum List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Function List",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={`preset(elem: any, cap: int) -> list`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Creates a list with elements `elem` of size `cap`.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`from_range(start: int, stop: int, stride: int) -> list<int|float>`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Takes a list and then returns element within range specified by the parameters `start`, `stop`, `stride`.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`fill(lst: @ref list<any>, k: any) -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Fills the given list `lst` with element `k`.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`sumf(lst: @const @ref list<real>) -> float`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Returns the sum all elements in `lst` as a float.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`sum(lst: @const @ref list<int|float>) -> int`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Returns the sum all elements in `lst` as an integer.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`find(lst: @const @ref list<any>, elem: @const @ref any) -> option<int>`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Takes a reference to a list and a reference to an element and looks for the element find in the given list' />
+                            <EARLInfo text='Returns the index of the first occurrence that `elem` appears in `lst` wrapped in `some`, or `none` if not found.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`count(lst: @const @ref list<any>, elem: @const @ref any) -> int`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Counts the number of occurrences that `elem` appears in `lst`.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`quicksort(lst: @ref list<any>, compar: : @const closure(x1: any, x2: type(x1)) -> bool|int) -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='where =compar= is some ordering function $F(x_1, x_2) \in \{true, false\}$' />
+                            <EARLInfo text='and $F$ is defined by' />
+                            <EARLInfo text='\[' />
+                            <EARLInfo text='F(x_1, x_2) = \begin{cases}' />
+                            <EARLInfo text='true & \text{if } R(x_1) \ge R(x_2) \\' />
+                            <EARLInfo text='false & \text{if } R(x_1) < R(x_2)' />
+                            <EARLInfo text='\end{cases}' />
+                            <EARLInfo text='\]' />
+                            <EARLInfo text='and $R(x)$ is some ranking function that produces a rank of $x$.' />
+                            <EARLInfo text='Performs the quicksort sorting algorithm on =lst= and' />
+                            <EARLInfo text='sorts by the comparison closure =compar=.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`dict_to_list(dict: @const @ref dict<any, any>) -> list<tuple<any, any>>`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Converts the dictionary `dict` to a list.' />
+                        </EARLInfoIndent>
+                    </>
+                ),
+            },
+            {
+                title: "Class List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
             },
         ],
     },
@@ -224,73 +425,6 @@ export const stdLibModules = [
                         <EARLInfo text='None' />
                     </>
                 ),
-            },
-        ],
-    },
-    {
-        title: "Set",
-        content: (
-            <>
-                <EARLInfo text='Import: `"std/set.rl"`' />
-                <EARLInfo text='Module: `Set`' />
-            </>
-        ),
-        subsections: [
-            {
-                title: "Variable List",
-                content: (
-                    <>
-                        <EARLInfo text='None' />
-                    </>
-                ),
-            },
-            {
-                title: "Enum List",
-                content: (
-                    <>
-                        <EARLInfo text='None' />
-                    </>
-                ),
-            },
-            {
-                title: "Function List",
-                content: (
-                    <>
-                        <EARLInfo text='None' />
-                    </>
-                ),
-            },
-            {
-                title: "Class List",
-                content: (
-                    <>
-                        <EARLCodeSnippet code={`T[init: : list<x0: any, x1: type(x0), ..., xN: type(x0)>]`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Creates a new Set container with the initializer list `init`.' />
-                        </EARLInfoIndent>
-                    </>
-                ),
-                subsections: [
-                    {
-                        title: "T Implements",
-                        content: (
-                            <>
-                        <EARLCodeSnippet code={`insert(value: any) -> unit`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Insert `value` into the `set`. A panic will occur' />
-                            <EARLInfo text='if the `typeof(value)` is not the same as the other' />
-                            <EARLInfo text='values in the `set`.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`contains(value: any) -> bool`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Returns `true` if `value` is in the `set`, or `false` if it is not.' />
-                            <EARLInfo text='A panic will occur if the `typeof(value)` is not the same as the other' />
-                            <EARLInfo text='values in the `set`.' />
-                        </EARLInfoIndent>
-                            </>
-                        ),
-                    },
-                ],
             },
         ],
     },
@@ -382,131 +516,6 @@ export const stdLibModules = [
                         <EARLCodeSnippet code={`launch_bgproc(proc: str) -> unit`} language={'armasm'} />
                         <EARLInfoIndent>
                             <EARLInfo text='Launch the processes `proc` in the background.' />
-                        </EARLInfoIndent>
-                    </>
-                ),
-            },
-            {
-                title: "Class List",
-                content: (
-                    <>
-                        <EARLInfo text='None' />
-                    </>
-                ),
-            },
-        ],
-    },
-    {
-        title: "Char",
-        content: (
-            <>
-                <EARLInfo text='Import: `"std/char.rl"`' />
-                <EARLInfo text='Module: `Char`' />
-            </>
-        ),
-        subsections: [
-            {
-                title: "Variable List",
-                content: (
-                    <>
-                        <EARLInfo text='None' />
-                    </>
-                ),
-            },
-            {
-                title: "Enum List",
-                content: (
-                    <>
-                        <EARLInfo text='None' />
-                    </>
-                ),
-            },
-            {
-                title: "Function List",
-                content: (
-                    <>
-                        <EARLCodeSnippet code={`isalpha(c: char) -> bool`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Takes the char `c` and returns a boolean of whether or not it is a an alpha character.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`isnum(c: char) -> bool`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Takes the char `c` and returns a boolean of whether or not' />
-                            <EARLInfo text='it is a digit.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`isalnum(c: char) -> bool`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Takes the char `c` and returns a boolean of whether or not it is a digit or an alpha character.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`tolower(c: char) -> char`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Takes the char `c` and returns a lowercase character version of the latin alphabet' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`toupper(c: char) -> char`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Takes the char `c` and returns a uppercase character version of the latin alphabet' />
-                        </EARLInfoIndent>
-                    </>
-                ),
-            },
-            {
-                title: "Class List",
-                content: (
-                    <>
-                        <EARLInfo text='None' />
-                    </>
-                ),
-            },
-        ],
-    },
-    {
-        title: "Str",
-        content: (
-            <>
-                <EARLInfo text='Import: `"std/str.rl"`' />
-                <EARLInfo text='Module: `Str`' />
-            </>
-        ),
-        subsections: [
-            {
-                title: "Variable List",
-                content: (
-                    <>
-                        <EARLInfo text='None' />
-                    </>
-                ),
-            },
-            {
-                title: "Enum List",
-                content: (
-                    <>
-                        <EARLInfo text='None' />
-                    </>
-                ),
-            },
-            {
-                title: "Function List",
-                content: (
-                    <>
-                        <EARLCodeSnippet code={`to_list(s: @ref str) -> list`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Convert the string `s` to a `list`.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`find(s: @ref str, t: char) -> int`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Returns the index of target `t` in a `some` value or `none` if not found.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`trim(s: @ref str) -> unit`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Trims all whitespace (spaces, tabs, newlines etc.) from `s` in-place.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`find_first_of(s: @const @ref str, t: char) -> option<int>`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Finds the first ocurrence of `t` in `s`.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`find_last_of(s: @const @ref str, t: char) -> option<int>`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Finds the last ocurrence of `t` in `s`.' />
                         </EARLInfoIndent>
                     </>
                 ),
@@ -679,6 +688,52 @@ export const stdLibModules = [
                         <EARLCodeSnippet code={`clamp(value: real, min: real, max: real) -> real`} language={'armasm'} />
                         <EARLInfoIndent>
                             <EARLInfo text='Performs clamp on `value` with `min` and `max`.' />
+                        </EARLInfoIndent>
+                    </>
+                ),
+            },
+            {
+                title: "Class List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Encryption",
+        content: (
+            <>
+                <EARLInfo text='Import: `"std/algorithms/encryption.rl"`' />
+                <EARLInfo text='Module: `Encryption`' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Variable List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Enum List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Function List",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={`rle(src: str) -> str`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Performs Run Length Encoding on `src`.' />
                         </EARLInfoIndent>
                     </>
                 ),
@@ -902,11 +957,11 @@ export const stdLibModules = [
         ],
     },
     {
-        title: "Encryption",
+        title: "Matrix",
         content: (
             <>
-                <EARLInfo text='Import: `"std/encryption.rl"`' />
-                <EARLInfo text='Module: `Encryption`' />
+                <EARLInfo text='Import: `"std/containers/matrix.rl"`' />
+                <EARLInfo text='Module: `Matrix`' />
             </>
         ),
         subsections: [
@@ -930,9 +985,17 @@ export const stdLibModules = [
                 title: "Function List",
                 content: (
                     <>
-                        <EARLCodeSnippet code={`rle(src: str) -> str`} language={'armasm'} />
+                        <EARLCodeSnippet code={`identity() -> T`} language={'armasm'} />
                         <EARLInfoIndent>
-                            <EARLInfo text='Performs Run Length Encoding on `src`.' />
+                            <EARLInfo text='Creates the identity matrix.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`from1d(data: list<any>, rows: int, cols: int) -> T`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Creates a `rows` x `cols` matrix from a 1d list.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`from2d(data: list<list<any>>) -> T`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Creates a matrix from a 2d list.' />
                         </EARLInfoIndent>
                     </>
                 ),
@@ -941,18 +1004,39 @@ export const stdLibModules = [
                 title: "Class List",
                 content: (
                     <>
-                        <EARLInfo text='None' />
+                        <EARLCodeSnippet code={`T[init: list<any>, rows: int, cols: int]`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Creates a new matrix with the initial dataset `init`' />
+                            <EARLInfo text='with `rows` rows and `cols` columns.' />
+                        </EARLInfoIndent>
                     </>
                 ),
+                subsections: [
+                    {
+                        title: "T Implements",
+                        content: (
+                            <>
+                        <EARLCodeSnippet code={`at(i: int, j: int) -> any`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Returns the element at [ `i` ][ `j` ] in the matrix.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`show() -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Prints all elements in the matrix.' />
+                        </EARLInfoIndent>
+                            </>
+                        ),
+                    },
+                ],
             },
         ],
     },
     {
-        title: "List",
+        title: "Queue",
         content: (
             <>
-                <EARLInfo text='Import: `"std/list.rl"`' />
-                <EARLInfo text='Module: `List`' />
+                <EARLInfo text='Import: `"std/containers/queue.rl"`' />
+                <EARLInfo text='Module: `Queue`' />
             </>
         ),
         subsections: [
@@ -960,14 +1044,7 @@ export const stdLibModules = [
                 title: "Variable List",
                 content: (
                     <>
-                        <EARLCodeSnippet code={`DEFAULT_INT_ASCEND_QUICKSORT: closure(int, int) -> bool`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text="The default comparison function for ascending sort." />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`DEFAULT_INT_DESCEND_QUICKSORT: closure(int, int) -> bool`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text="The default comparison function for descending sort." />
-                        </EARLInfoIndent>
+                        <EARLInfo text='None' />
                     </>
                 ),
             },
@@ -983,53 +1060,7 @@ export const stdLibModules = [
                 title: "Function List",
                 content: (
                     <>
-                        <EARLCodeSnippet code={`preset(elem: any, cap: int) -> list`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Creates a list with elements `elem` of size `cap`.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`from_range(start: int, stop: int, stride: int) -> list<int|float>`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Takes a list and then returns element within range specified by the parameters `start`, `stop`, `stride`.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`fill(lst: @ref list<any>, k: any) -> unit`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Fills the given list `lst` with element `k`.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`sumf(lst: @const @ref list<real>) -> float`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Returns the sum all elements in `lst` as a float.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`sum(lst: @const @ref list<int|float>) -> int`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Returns the sum all elements in `lst` as an integer.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`find(lst: @const @ref list<any>, elem: @const @ref any) -> option<int>`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Takes a reference to a list and a reference to an element and looks for the element find in the given list' />
-                            <EARLInfo text='Returns the index of the first occurrence that `elem` appears in `lst` wrapped in `some`, or `none` if not found.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`count(lst: @const @ref list<any>, elem: @const @ref any) -> int`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Counts the number of occurrences that `elem` appears in `lst`.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`quicksort(lst: @ref list<any>, compar: : @const closure(x1: any, x2: type(x1)) -> bool|int) -> unit`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='where =compar= is some ordering function $F(x_1, x_2) \in \{true, false\}$' />
-                            <EARLInfo text='and $F$ is defined by' />
-                            <EARLInfo text='\[' />
-                            <EARLInfo text='F(x_1, x_2) = \begin{cases}' />
-                            <EARLInfo text='true & \text{if } R(x_1) \ge R(x_2) \\' />
-                            <EARLInfo text='false & \text{if } R(x_1) < R(x_2)' />
-                            <EARLInfo text='\end{cases}' />
-                            <EARLInfo text='\]' />
-                            <EARLInfo text='and $R(x)$ is some ranking function that produces a rank of $x$.' />
-                            <EARLInfo text='Performs the quicksort sorting algorithm on =lst= and' />
-                            <EARLInfo text='sorts by the comparison closure =compar=.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`dict_to_list(dict: @const @ref dict<any, any>) -> list<tuple<any, any>>`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Converts the dictionary `dict` to a list.' />
-                        </EARLInfoIndent>
+                        <EARLInfo text='None' />
                     </>
                 ),
             },
@@ -1037,9 +1068,252 @@ export const stdLibModules = [
                 title: "Class List",
                 content: (
                     <>
+                        <EARLCodeSnippet code={`T[init: list]`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='A queue data structure.' />
+                        </EARLInfoIndent>
+                    </>
+                ),
+                subsections: [
+                    {
+                        title: "T Implements",
+                        content: (
+                            <>
+                        <EARLCodeSnippet code={`push(val: any) -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Pushes a value to the back of the queue.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`pop() -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Pops the front value from the queue.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`front() -> any`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Returns the front value of the queue.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`empty() -> bool`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Returns true if the queue is empty.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`size() -> int`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Returns the size of the queue.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`clear() -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Clears the queue.' />
+                        </EARLInfoIndent>
+                            </>
+                        ),
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        title: "Set",
+        content: (
+            <>
+                <EARLInfo text='Import: `"std/containers/set.rl"`' />
+                <EARLInfo text='Module: `Set`' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Variable List",
+                content: (
+                    <>
                         <EARLInfo text='None' />
                     </>
                 ),
+            },
+            {
+                title: "Enum List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Function List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Class List",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={`T[init: : list<x0: any, x1: type(x0), ..., xN: type(x0)>]`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Creates a new Set container with the initializer list `init`.' />
+                        </EARLInfoIndent>
+                    </>
+                ),
+                subsections: [
+                    {
+                        title: "T Implements",
+                        content: (
+                            <>
+                        <EARLCodeSnippet code={`insert(value: any) -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Insert `value` into the `set`. A panic will occur' />
+                            <EARLInfo text='if the `typeof(value)` is not the same as the other' />
+                            <EARLInfo text='values in the `set`.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`contains(value: any) -> bool`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Returns `true` if `value` is in the `set`, or `false` if it is not.' />
+                            <EARLInfo text='A panic will occur if the `typeof(value)` is not the same as the other' />
+                            <EARLInfo text='values in the `set`.' />
+                        </EARLInfoIndent>
+                            </>
+                        ),
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        title: "Stack",
+        content: (
+            <>
+                <EARLInfo text='Import: `"std/containers/stack.rl"`' />
+                <EARLInfo text='Module: `Stack`' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Variable List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Enum List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Function List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Class List",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={`T[init: list]`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='A stack data structure.' />
+                        </EARLInfoIndent>
+                    </>
+                ),
+                subsections: [
+                    {
+                        title: "T Implements",
+                        content: (
+                            <>
+                        <EARLCodeSnippet code={`push(val: any) -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Pushes a value to the top of the stack.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`pop() -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Pops the top value from the stack.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`top() -> any`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Returns the top value of the stack.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`clear() -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Clears the stack.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`empty() -> bool`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Returns true if the stack is empty.' />
+                        </EARLInfoIndent>
+                            </>
+                        ),
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        title: "IntervalTree",
+        content: (
+            <>
+                <EARLInfo text='Import: `"std/containers/interval-tree.rl"`' />
+                <EARLInfo text='Module: `IntervalTree`' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Variable List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Enum List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Function List",
+                content: (
+                    <>
+                        <EARLInfo text='None' />
+                    </>
+                ),
+            },
+            {
+                title: "Class List",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={`T[init: list<tuple<real, real>>]`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Creates a new Interval Tree container.' />
+                        </EARLInfoIndent>
+                    </>
+                ),
+                subsections: [
+                    {
+                        title: "T Implements",
+                        content: (
+                            <>
+                        <EARLCodeSnippet code={`insert(low: real, high: real) -> unit`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Insert a new Interval into the tree.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`overlapping(low: real, high: real) -> option<tuple<real, real>>`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Check if the given interval `low`..`high` is contained' />
+                            <EARLInfo text='within another interval. If there are several, returns the' />
+                            <EARLInfo text='widest interval range.' />
+                        </EARLInfoIndent>
+                            </>
+                        ),
+                    },
+                ],
             },
         ],
     },
