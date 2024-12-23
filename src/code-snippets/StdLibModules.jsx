@@ -415,6 +415,11 @@ export const stdLibModules = [
                         <EARLInfoIndent>
                             <EARLInfo text='Rename the file `path_from` to `path_to`.' />
                         </EARLInfoIndent>
+                        <EARLCodeSnippet code={`walkdir(dir: str) -> list<str>`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Walks the directory `dir` recursively, returning' />
+                            <EARLInfo text='all files found.' />
+                        </EARLInfoIndent>
                     </>
                 ),
             },
@@ -894,10 +899,6 @@ export const stdLibModules = [
                         <EARLCodeSnippet code={`isdir(path: str) -> bool`} language={'armasm'} />
                         <EARLInfoIndent>
                             <EARLInfo text='Return `true` if `path` is a directory or `false` if otherwise.' />
-                        </EARLInfoIndent>
-                        <EARLCodeSnippet code={`cd(path: str) -> unit`} language={'armasm'} />
-                        <EARLInfoIndent>
-                            <EARLInfo text='Change the current working directory to `path`.' />
                         </EARLInfoIndent>
                         <EARLCodeSnippet code={`mkdir(name: str) -> unit`} language={'armasm'} />
                         <EARLInfoIndent>

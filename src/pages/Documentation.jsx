@@ -103,6 +103,7 @@ import {
     tupleContains,
 } from "../code-snippets/TupleMemberIntrinsics";
 import { charAscii } from "../code-snippets/CharMemberIntrinsics";
+import { intUtf8 } from "../code-snippets/IntMemberIntrinsics";
 import {
     optionIsNone,
     optionIsSome,
@@ -1822,6 +1823,15 @@ const memberIntrinsicsSections = [
             <>
                 <EARLCodeSnippet code={charAscii} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the ascii code of the character.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
+        title: "int Implements",
+        content: (
+            <>
+                <EARLCodeSnippet code={intUtf8} language={'rust'} />
+                <EARLInfoIndent><EARLInfo text='Returns the `char` character for the integer code.' /></EARLInfoIndent>
             </>
         ),
     },
