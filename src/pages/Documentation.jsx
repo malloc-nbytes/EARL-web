@@ -35,6 +35,7 @@ import { listExample1Src } from "../code-snippets/List";
 import { rangeExample1Src } from "../code-snippets/Range";
 import { sliceExample1Src } from "../code-snippets/Slice";
 import { tupleExample1Src } from "../code-snippets/Tuple";
+import { predicateExample1Src } from "../code-snippets/Predicate";
 import { optionExample1Src, optionExample2Src } from "../code-snippets/Option";
 import { closureCXXExample1Src, closureExample1Src, closureExample2Src } from "../code-snippets/Closure";
 import { typeKWExample1Src } from "../code-snippets/TypeKW";
@@ -1313,6 +1314,15 @@ const datatypesSections = [
                     </EARLInfoIndent>
                 </EARLInfoIndent>
                 <EARLCodeSnippet code={sliceExample1Src} language={'rust'} />
+            </>
+        ),
+    },
+    {
+        title: "predicate",
+        content: (
+            <>
+                <EARLInfo text='A predicate is used for easy shorthand binary operations that could replace closures.' />
+                <EARLCodeSnippet code={predicateExample1Src} language={'rust'} />
             </>
         ),
     },
