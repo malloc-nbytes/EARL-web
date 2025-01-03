@@ -72,6 +72,7 @@ import {
     initSeedDef,
     randomDef,
     observeDef,
+    flushDef,
 } from "../code-snippets/Intrinsics";
 import {
     listAppend,
@@ -1731,6 +1732,15 @@ const intrinsicsSections = [
                 <EARLInfoSpace>
                     <EARLInfo text='*Note*: `callback` is expected to take only 1 parameter.' />
                 </EARLInfoSpace>
+            </>
+        ),
+    },
+    {
+        title: "flush()",
+        content: (
+            <>
+                <EARLCodeSnippet code={flushDef} language={'rust'} />
+                <EARLInfo text='Flush `stdout`.' />
             </>
         ),
     },
