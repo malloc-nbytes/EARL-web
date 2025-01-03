@@ -146,6 +146,12 @@ cd build
 cmake -S .. -B .
 `;
 
+const compilingEARLPortableBash = `cd EARL
+mkdir build
+cd build
+cmake -S .. -B . -DPORTABLE=ON
+`;
+
 const installingEARLBash = `cd build
 make
 sudo make install
@@ -1990,7 +1996,21 @@ const sections = [
                 content: (
                     <>
                         <EARLInfo text="Use the following command to set up CMake." />
-                        <EARLCodeSnippet code={compilingEARLBash} language="bash" />
+                        <EARLInfo text="There are two different versions of EARL that you can install:" />
+                        <EARLInfoIndent>
+                            <EARLInfo text="1. EARL (standard) (recommended)" />
+                            <EARLInfoIndent>
+                                <EARLCodeSnippet code={compilingEARLBash} language="bash" />
+                            </EARLInfoIndent>
+                            <EARLInfo text="2. EARL (portable)" />
+                            <EARLInfoIndent>
+                                <EARLCodeSnippet code={compilingEARLPortableBash} language="bash" />
+                            </EARLInfoIndent>
+                        </EARLInfoIndent>
+                        <EARLInfo text="The difference between the two is that the standard version" />
+                        <EARLInfo text="will install all StdLib files into `-DINSTALL-PREFIX` while the portable" />
+                        <EARLInfo text="version will embed the StdLib into the interpreter. This version is better" />
+                        <EARLInfo text="if you are compiling to small targets." />
                     </>
                 ),
                 subsections: [
