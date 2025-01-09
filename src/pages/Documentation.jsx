@@ -92,7 +92,14 @@ import {
     strForeach,
     strSplit,
     strContains,
+    strStartswith,
+    strEndswith,
+    strTrim,
 } from "../code-snippets/StrMemberIntrinsics";
+import {
+    boolIfelse,
+    boolToggle,
+} from "../code-snippets/BoolMemberIntrinsics";
 import {
     dictInsert,
     dictHasKey,
@@ -1784,6 +1791,18 @@ const memberIntrinsicsSections = [
         ),
     },
     {
+        title: "bool Implements",
+        content: (
+            <>
+                <EARLCodeSnippet code={boolIfelse} language={'rust'} />
+                <EARLInfoIndent><EARLInfo text='If true, returns `true_value`, otherwise returns `false_value`.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={boolToggle} language={'rust'} />
+                <EARLInfoIndent><EARLInfo text='Toggles the boolean.' /></EARLInfoIndent>
+            </>
+        ),
+    },
+    {
         title: "str Implements",
         content: (
             <>
@@ -1807,6 +1826,15 @@ const memberIntrinsicsSections = [
 
                 <EARLCodeSnippet code={strContains} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Checks to see if `val` is in the `str`.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={strStartswith} language={'rust'} />
+                <EARLInfoIndent><EARLInfo text='Checks to see if the string starts with `s`.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={strEndswith} language={'rust'} />
+                <EARLInfoIndent><EARLInfo text='Checks to see if the string ends with `s`.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={strTrim} language={'rust'} />
+                <EARLInfoIndent><EARLInfo text='Removes all whitespace, newlines, and tabs at the start and end of the string.' /></EARLInfoIndent>
             </>
         ),
     },
