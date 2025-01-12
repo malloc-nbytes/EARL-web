@@ -231,6 +231,10 @@ export const stdLibModules = [
                 title: "Function List",
                 content: (
                     <>
+                        <EARLCodeSnippet code={`isnum(s: str) -> bool`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Check to see if the string `s` is a number.' />
+                        </EARLInfoIndent>
                         <EARLCodeSnippet code={`to_list(s: @ref str) -> list`} language={'armasm'} />
                         <EARLInfoIndent>
                             <EARLInfo text='Convert the string `s` to a `list`.' />
