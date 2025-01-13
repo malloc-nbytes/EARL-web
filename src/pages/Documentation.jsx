@@ -111,7 +111,11 @@ import {
     tupleForeach,
     tupleContains,
 } from "../code-snippets/TupleMemberIntrinsics";
-import { charAscii } from "../code-snippets/CharMemberIntrinsics";
+import {
+    charAscii,
+    charIsupper,
+    charIslower,
+} from "../code-snippets/CharMemberIntrinsics";
 import { intUtf8 } from "../code-snippets/IntMemberIntrinsics";
 import {
     optionIsNone,
@@ -1877,6 +1881,12 @@ const memberIntrinsicsSections = [
             <>
                 <EARLCodeSnippet code={charAscii} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns the ascii code of the character.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={charIsupper} language={'rust'} />
+                <EARLInfoIndent><EARLInfo text='Check to see if the char is uppercase.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={charIslower} language={'rust'} />
+                <EARLInfoIndent><EARLInfo text='Check to see if the char is lowercase.' /></EARLInfoIndent>
             </>
         ),
     },
