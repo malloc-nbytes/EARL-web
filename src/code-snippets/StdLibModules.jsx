@@ -181,6 +181,14 @@ export const stdLibModules = [
                         <EARLInfoIndent>
                             <EARLInfo text='Takes the char `c` and returns a boolean of whether or not it is a digit or an alpha character.' />
                         </EARLInfoIndent>
+                        <EARLCodeSnippet code={`islower(c: char) -> bool`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Takes the char `c` and returns whether or not it is lowercase.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`isupper(c: char) -> bool`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Takes the char `c` and returns whether or not it is uppercase.' />
+                        </EARLInfoIndent>
                         <EARLCodeSnippet code={`tolower(c: char) -> char`} language={'armasm'} />
                         <EARLInfoIndent>
                             <EARLInfo text='Takes the char `c` and returns a lowercase character version of the latin alphabet' />
@@ -423,6 +431,11 @@ export const stdLibModules = [
                         <EARLInfoIndent>
                             <EARLInfo text='Walks the directory `dir` recursively, returning' />
                             <EARLInfo text='all files found.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`strip_path(path: str) -> str`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Returns the filename after striping the' />
+                            <EARLInfo text='path leading to it.' />
                         </EARLInfoIndent>
                     </>
                 ),
@@ -915,7 +928,7 @@ export const stdLibModules = [
                             <EARLInfo text='in the path will be used as the file to be created.' />
                             <EARLInfo text='It is functionally equivalent to: `mkdir -p <path> && touch <path>/file.txt`.' />
                         </EARLInfoIndent>
-                        <EARLCodeSnippet code={`name_and_ext(filepath: str) -> tuple`} language={'armasm'} />
+                        <EARLCodeSnippet code={`name_and_ext(path: str) -> tuple<option<str>, option<str>>`} language={'armasm'} />
                         <EARLInfoIndent>
                             <EARLInfo text='Returns a tuple of filename and extension. If either the name or extension' />
                             <EARLInfo text='cannot be found, the respective one will be set to `none`.' />
@@ -947,6 +960,13 @@ export const stdLibModules = [
                         <EARLInfoIndent>
                             <EARLInfo text='Run the bash command `cmd` and return the' />
                             <EARLInfo text='output as a tuple of `(exit_code, output)`.' />
+                        </EARLInfoIndent>
+                        <EARLCodeSnippet code={`get_all_files_by_ext(dir: @const @ref str, ext: @const @ref str) -> list<str>`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Get all files in the directory `dir` that have the' />
+                            <EARLInfo text='file extension `ext`.' />
+                            <EARLInfo text='Example:' />
+                            <EARLInfo text='let cppfiles = get_all_files_by_ext(".", "cpp");' />
                         </EARLInfoIndent>
                     </>
                 ),
