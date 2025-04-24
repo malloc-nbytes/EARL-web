@@ -263,6 +263,13 @@ export const stdLibModules = [
                         <EARLInfoIndent>
                             <EARLInfo text='Finds the last ocurrence of `t` in `s`.' />
                         </EARLInfoIndent>
+                        <EARLCodeSnippet code={`is_only_ignorable(s: @const @ref str) -> bool`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Checks to see if the all characters in' />
+                            <EARLInfo text='the string `s` are (' ', '\n', '\r', '\t').' />
+                            <EARLInfo text='Return `true` if all are one of the ignorable' />
+                            <EARLInfo text='characters, or `false` if otherwise.' />
+                        </EARLInfoIndent>
                     </>
                 ),
             },
