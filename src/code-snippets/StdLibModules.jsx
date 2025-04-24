@@ -359,6 +359,10 @@ export const stdLibModules = [
                         <EARLInfoIndent>
                             <EARLInfo text='Converts the dictionary `dict` to a list.' />
                         </EARLInfoIndent>
+                        <EARLCodeSnippet code={`to_str(lst: @const @ref list<any>) -> str`} language={'armasm'} />
+                        <EARLInfoIndent>
+                            <EARLInfo text='Convert a list to a space separated string.' />
+                        </EARLInfoIndent>
                     </>
                 ),
             },
