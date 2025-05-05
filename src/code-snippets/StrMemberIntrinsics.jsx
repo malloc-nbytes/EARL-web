@@ -8,3 +8,4 @@ export const strContains         = "contains(ch: c) -> bool";
 export const strStartswith       = "startswith(s: str) -> bool";
 export const strEndswith         = "endswith(s: str) -> bool";
 export const strTrim             = "trim() -> str";
+export const strSubstr           = "substr(start: int, end: int) -> str";

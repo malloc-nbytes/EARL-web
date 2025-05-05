@@ -76,6 +76,7 @@ import {
     persistDef,
     persistLookupDef,
     persistDelDef,
+    formatDef,
 } from "../code-snippets/Intrinsics";
 import {
     listAppend,
@@ -98,6 +99,7 @@ import {
     strStartswith,
     strEndswith,
     strTrim,
+    strSubstr,
 } from "../code-snippets/StrMemberIntrinsics";
 import {
     boolIfelse,
@@ -1792,6 +1794,15 @@ const intrinsicsSections = [
             </>
         ),
     },
+    {
+        title: "format()",
+        content: (
+            <>
+                <EARLCodeSnippet code={formatDef} language={'rust'} />
+                <EARLInfo text='Format `arg1..argN` into a `str`.' />
+            </>
+        ),
+    },
 ];
 
 const memberIntrinsicsSections = [
@@ -1870,6 +1881,9 @@ const memberIntrinsicsSections = [
 
                 <EARLCodeSnippet code={strTrim} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Removes all whitespace, newlines, and tabs at the start and end of the string.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={strSubstr} language={'rust'} />
+                <EARLInfoIndent><EARLInfo text='Get a substring from `start..end-1`' /></EARLInfoIndent>
             </>
         ),
     },
