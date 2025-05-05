@@ -73,6 +73,9 @@ import {
     randomDef,
     observeDef,
     flushDef,
+    persistDef,
+    persistLookupDef,
+    persistDelDef,
 } from "../code-snippets/Intrinsics";
 import {
     listAppend,
@@ -1758,6 +1761,34 @@ const intrinsicsSections = [
             <>
                 <EARLCodeSnippet code={flushDef} language={'rust'} />
                 <EARLInfo text='Flush `stdout`.' />
+            </>
+        ),
+    },
+    {
+        title: "persist()",
+        content: (
+            <>
+                <EARLCodeSnippet code={persistDef} language={'rust'} />
+                <EARLInfo text='Have a value persist throughout other programs.' />
+            </>
+        ),
+    },
+    {
+        title: "persist_lookup()",
+        content: (
+            <>
+                <EARLCodeSnippet code={persistLookupDef} language={'rust'} />
+                <EARLInfo text='Lookup a persistent variable.' />
+            </>
+        ),
+    },
+    {
+        title: "persist_del()",
+        content: (
+            <>
+                <EARLCodeSnippet code={persistDelDef} language={'rust'} />
+                <EARLInfo text='Delete a persistent variable.' />
+                <EARLInfoIndent><EARLInfo text='*Note*: This function will panic() if the variable is not found.' /></EARLInfoIndent>
             </>
         ),
     },

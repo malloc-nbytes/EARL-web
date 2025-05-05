@@ -29,3 +29,6 @@ export const initSeedDef         = "init_seed(seed: int) -> unit";
 export const randomDef           = "random() -> int";
 export const observeDef          = "observe(var: <identifier>, callback: FunctionRef(any) -> unit | closure<any> -> unit) -> unit";
 export const flushDef            = "flush() -> unit";
+export const persistDef          = "persist(id: str, value: any) -> unit";
+export const persistLookupDef    = "persist_lookup(id: str) -> option<str>";
+export const persistDelDef       = "persist_del(id: str) -> unit";
