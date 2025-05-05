@@ -8,6 +8,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Documentation from "./pages/Documentation";
 import Examples from "./pages/Examples";
+import Earlmgr from "./pages/Earlmgr";
 import Home from "./pages/Home";
 import InvalidPage from "./pages/InvalidPage";
 
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/documentation" element={<Documentation />} />
                 <Route path="/examples" element={<Examples />} />
+                <Route path="/earlmgr" element={<Earlmgr />} />
                 <Route path="*" element={<InvalidPage />} />
             </Routes>
         </BrowserRouter>

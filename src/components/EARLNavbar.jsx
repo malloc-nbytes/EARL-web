@@ -44,6 +44,11 @@ function EARLNavbar({ selected }) {
                         </Link>
                     </li>
                     <li>
+                        <Link to="/earlmgr" className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'earlmgr' ? 'underline' : ''}`}>
+                            earlmgr
+                        </Link>
+                    </li>
+                    <li>
                         <Link to="/contact" className={`text-sm md:text-base font-light hover:text-gray-300 transition-colors ${selected === 'contact' ? 'underline' : ''}`}>
                             Contact
                         </Link>
