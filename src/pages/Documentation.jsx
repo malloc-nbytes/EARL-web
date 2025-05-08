@@ -109,6 +109,7 @@ import {
     dictInsert,
     dictHasKey,
     dictHasValue,
+    dictEmpty,
 } from "../code-snippets/DictionaryMemberIntrinsics";
 import {
     tupleRev,
@@ -1917,6 +1918,9 @@ const memberIntrinsicsSections = [
 
                 <EARLCodeSnippet code={dictHasValue} language={'rust'} />
                 <EARLInfoIndent><EARLInfo text='Returns `true` if the value `v` is present in the `dictionary` and `false` if otherwise.' /></EARLInfoIndent>
+
+                <EARLCodeSnippet code={dictEmpty} language={'rust'} />
+                <EARLInfoIndent><EARLInfo text='Returns `true` if the `dictionary` is empty and `false` if otherwise.' /></EARLInfoIndent>
             </>
         ),
     },
