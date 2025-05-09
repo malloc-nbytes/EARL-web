@@ -33,3 +33,4 @@ export const persistDef          = "persist(id: str, value: any) -> unit";
 export const persistLookupDef    = "persist_lookup(id: str) -> option<str>";
 export const persistDelDef       = "persist_del(id: str) -> unit";
 export const formatDef           = "format(arg1: any, arg2: any, ..., argN: any) -> str";
+export const replInputDef        = "REPL_input(arg1: any, arg2: any, ..., argN: any) -> str";

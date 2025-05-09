@@ -77,6 +77,7 @@ import {
     persistLookupDef,
     persistDelDef,
     formatDef,
+    replInputDef,
 } from "../code-snippets/Intrinsics";
 import {
     listAppend,
@@ -1804,6 +1805,16 @@ const intrinsicsSections = [
             </>
         ),
     },
+    {
+        title: "REPL_input()",
+        content: (
+            <>
+                <EARLCodeSnippet code={replInputDef} language={'rust'} />
+                <EARLInfo text='Get user input from the REPL with the prompt of the stringified parameters.' />
+            </>
+        ),
+    },
+
 ];
 
 const memberIntrinsicsSections = [
