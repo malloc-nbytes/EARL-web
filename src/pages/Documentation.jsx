@@ -157,6 +157,13 @@ import {
 } from "../code-snippets/Use";
 import { execExampleSrc1 } from "../code-snippets/Exec";
 import { caseExample1Src, caseExample2Src } from "../code-snippets/Case";
+import {
+     tryCatchExample1Src,
+     tryCatchExample2Src,
+     tryCatchExample3Src,
+     tryCatchExample4Src,
+     tryCatchExample5Src
+} from "../code-snippets/TryCatch.js"
 
 const compilingEARLBash = `cd EARL
 mkdir build
@@ -229,6 +236,8 @@ const keywordsData = [
     { keyword: "use", section: "Use" },
     { keyword: "exec", section: "Exec" },
     { keyword: "case", section: "Case" },
+    { keyword: "try", section: "Try/Catch" },
+    { keyword: "catch", section: "Try/Catch" },
 ];
 
 const keywordsColumns = ["Keyword", "Section"];
@@ -728,6 +737,45 @@ const grammarAndFeatures = [
                     <>
                         <EARLCodeSnippet code={caseExample1Src} language={'bash'} />
                         <EARLCodeSnippet code={caseExample2Src} language={'bash'} />
+                    </>
+                ),
+            },
+        ],
+    },
+    {
+        title: "Try/Catch",
+        content: (
+            <>
+                <EARLInfoSpace>
+                    <EARLInfo text='There is a very basic try/catch system in EARL.' />
+                    <EARLInfo text='If any errors occur in the "try" section, the "catch" section' />
+                    <EARLInfo text='will immediately start.' />
+                </EARLInfoSpace>
+                <EARLInfoSpace>
+                    <EARLInfo text='The "catch" branch is optional, further, you can also provide a variable' />
+                    <EARLInfo text='for the error message that was thrown.' />
+                </EARLInfoSpace>
+                <EARLInfo text='*Note*: As of now, there are no Error Classes, only error messages.' />
+            </>
+        ),
+        subsections: [
+            {
+                title: "Grammar",
+                content: (
+                    <>
+                        <EARLInfo text='`try` `{` [stmt] `}` `catch` <identifier> `{` [stmt] `}`' />
+                    </>
+                ),
+            },
+            {
+                title: "Examples",
+                content: (
+                    <>
+                        <EARLCodeSnippet code={tryCatchExample1Src} language={'bash'} />
+                        <EARLCodeSnippet code={tryCatchExample2Src} language={'bash'} />
+                        <EARLCodeSnippet code={tryCatchExample3Src} language={'bash'} />
+                        <EARLCodeSnippet code={tryCatchExample4Src} language={'bash'} />
+                        <EARLCodeSnippet code={tryCatchExample5Src} language={'bash'} />
                     </>
                 ),
             },
